@@ -3,3 +3,7 @@ body {
   padding: 0px;
   font-family: 'Azeret Mono', monospace;
 }
+
+* {
+  box-sizing: border-box;
+}
