@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 import titleImage from '/title.svg'
 import Paragraph from '../../commons/Paragraph'
+import ImageButton from '../../commons/ImageButton'
+import brightBackgroundImage from '/images/bright-background.png'
+import blueGreenNoiseBackgroundImage from '/images/blue-green-noise-background.png'
 
 const Container = styled.div`
   width: 500px;
@@ -56,6 +59,14 @@ const Sidebar = () => {
           Make 3D on your website easier with online editor tool.
         </Paragraph>
       </DescriptionContainer>
+      <ImageButton
+        title='EDITOR'
+        backgroundImage={brightBackgroundImage}
+      ></ImageButton>
+      <ImageButton
+        title='DOCUMENT'
+        backgroundImage={blueGreenNoiseBackgroundImage}
+      ></ImageButton>
     </Container>
   )
 }
