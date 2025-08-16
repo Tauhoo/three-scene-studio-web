@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./woff2_compress:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
