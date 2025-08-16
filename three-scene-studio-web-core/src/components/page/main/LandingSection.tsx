@@ -1,9 +1,9 @@
 import PageSizeContainer from '../../commons/PageSizeContainer'
-import Sidebar from './Sidebar'
+import LandingContent from './LandingContent'
 const LandingSection = () => {
   return (
-    <PageSizeContainer style={{ backgroundColor: 'red' }}>
-      <Sidebar />
+    <PageSizeContainer>
+      <LandingContent />
     </PageSizeContainer>
   )
 }
