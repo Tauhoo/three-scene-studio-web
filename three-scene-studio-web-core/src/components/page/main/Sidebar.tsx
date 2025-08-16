@@ -20,9 +20,8 @@ const Container = styled.div`
 
   // start mobile mode
   @media (max-width: 700px) {
-    width: 200px;
+    width: 100%;
     background-color: transparent;
-    padding: 10px;
   }
 `
 
@@ -48,25 +47,59 @@ const DescriptionContainer = styled.div`
   }
 `
 
+const TopSection = styled.div`
+  width: 100%;
+
+  @media (max-width: 1200px) {
+    width: 400px;
+  }
+
+  @media (max-width: 1000px) {
+    width: 300px;
+  }
+
+  // start mobile mode
+  @media (max-width: 700px) {
+    width: 200px;
+    background-color: transparent;
+    padding: 10px;
+  }
+`
+
+const MenuButtonContainer = styled.div<{ align: 'left' | 'right' }>`
+  width: 100%;
+  height: 180px;
+  padding: ${props =>
+    props.align === 'left' ? '0px 30px 0px 0px' : '0px 0px 0px 30px'};
+`
+
 const Sidebar = () => {
   return (
     <Container>
-      <TitleContainer>
-        <img src={titleImage} alt='title' style={{ width: '100%' }} />
-      </TitleContainer>
-      <DescriptionContainer>
-        <Paragraph weight='regular'>
-          Make 3D on your website easier with online editor tool.
-        </Paragraph>
-      </DescriptionContainer>
-      <ImageButton
-        title='EDITOR'
-        backgroundImage={brightBackgroundImage}
-      ></ImageButton>
-      <ImageButton
-        title='DOCUMENT'
-        backgroundImage={blueGreenNoiseBackgroundImage}
-      ></ImageButton>
+      <TopSection>
+        <TitleContainer>
+          <img src={titleImage} alt='title' style={{ width: '100%' }} />
+        </TitleContainer>
+        <DescriptionContainer>
+          <Paragraph weight='regular'>
+            Make 3D on your website easier with online editor tool.
+          </Paragraph>
+        </DescriptionContainer>
+      </TopSection>
+      <MenuButtonContainer align='right'>
+        <ImageButton
+          title='EDITOR'
+          titlePosition='left'
+          backgroundImage={brightBackgroundImage}
+        ></ImageButton>
+      </MenuButtonContainer>
+      <MenuButtonContainer align='left'>
+        <ImageButton
+          title='DOCUMENT'
+          titlePosition='right'
+          backgroundImage={blueGreenNoiseBackgroundImage}
+        ></ImageButton>
+      </MenuButtonContainer>
     </Container>
   )
 }
