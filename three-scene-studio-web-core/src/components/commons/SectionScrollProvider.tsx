@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
+import { ScrollProvider } from '../../hooks/scrolling'
 
 const OFFSET_FROM_SCREEN = 10
 const POINT_SIZE = 15
@@ -99,7 +100,6 @@ const SectionScrollProvider: React.FC<React.PropsWithChildren> = ({
     const sectionProgressNumber = containerRef.current.scrollTop / sectionHeight
     const refs = [section1Ref, section2Ref, section3Ref, section4Ref]
 
-    let result: number[] = []
     for (let index = 0; index < refs.length; index++) {
       const ref = refs[index]
       const diff = Math.min(1, Math.abs(sectionProgressNumber - index))
@@ -114,9 +114,7 @@ const SectionScrollProvider: React.FC<React.PropsWithChildren> = ({
 
       const colorChannelScale = (1 - visibleScale) * 255
       child.style.backgroundColor = `rgba(${colorChannelScale}, ${colorChannelScale}, ${colorChannelScale}, 1)`
-      result.push(1 - diff)
     }
-    console.log(result)
   }
   useEffect(() => {
     onScroll()
@@ -129,23 +127,25 @@ const SectionScrollProvider: React.FC<React.PropsWithChildren> = ({
   }, [stat])
 
   return (
-    <Container ref={containerRef}>
-      <ContentContainer ref={contentRef}>{children}</ContentContainer>
-      <IndicatorContainer>
-        <PointContainer ref={section1Ref}>
-          <InnerPointContainer></InnerPointContainer>
-        </PointContainer>
-        <PointContainer ref={section2Ref}>
-          <InnerPointContainer></InnerPointContainer>
-        </PointContainer>
-        <PointContainer ref={section3Ref}>
-          <InnerPointContainer></InnerPointContainer>
-        </PointContainer>
-        <PointContainer ref={section4Ref}>
-          <InnerPointContainer></InnerPointContainer>
-        </PointContainer>
-      </IndicatorContainer>
-    </Container>
+    <ScrollProvider scrollParentRef={containerRef} scrollChildRef={contentRef}>
+      <Container ref={containerRef}>
+        <ContentContainer ref={contentRef}>{children}</ContentContainer>
+        <IndicatorContainer>
+          <PointContainer ref={section1Ref}>
+            <InnerPointContainer></InnerPointContainer>
+          </PointContainer>
+          <PointContainer ref={section2Ref}>
+            <InnerPointContainer></InnerPointContainer>
+          </PointContainer>
+          <PointContainer ref={section3Ref}>
+            <InnerPointContainer></InnerPointContainer>
+          </PointContainer>
+          <PointContainer ref={section4Ref}>
+            <InnerPointContainer></InnerPointContainer>
+          </PointContainer>
+        </IndicatorContainer>
+      </Container>
+    </ScrollProvider>
   )
 }
 

@@ -4,9 +4,7 @@ const AboutSection = () => {
   return (
     <PageSizeContainer
       style={{ backgroundColor: 'red', scrollSnapAlign: 'start' }}
-    >
-      AboutSection
-    </PageSizeContainer>
+    ></PageSizeContainer>
   )
 }
 

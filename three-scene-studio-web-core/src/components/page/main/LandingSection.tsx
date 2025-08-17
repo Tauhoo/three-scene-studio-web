@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import titleImage from '/title.svg'
 import Paragraph from '../../commons/Paragraph'
 import ImageButton from '../../commons/ImageButton'
 import brightBackgroundImage from '/images/bright-background.png'
@@ -31,14 +30,17 @@ const Container = styled.div`
 `
 
 const TitleContainer = styled.div`
-  width: 100%;
-  background-color: black;
-  padding: 20px;
-  overflow: hidden;
-
+  width: 400px;
+  height: 240px;
+  background-color: #ffffff;
+  @media (max-width: 1000px) {
+    width: 300px;
+    height: 183px;
+  }
   // start mobile mode
   @media (max-width: 700px) {
-    padding: 10px;
+    width: 180px;
+    height: 119.5px;
   }
 `
 
@@ -111,9 +113,7 @@ const LandingSection = () => {
     <PageSizeContainer>
       <Container>
         <TopSection>
-          <TitleContainer>
-            <img src={titleImage} alt='title' style={{ width: '100%' }} />
-          </TitleContainer>
+          <TitleContainer></TitleContainer>
           <DescriptionContainer>
             <Paragraph weight='regular'>
               Make 3D on your website easier with online editor tool.
