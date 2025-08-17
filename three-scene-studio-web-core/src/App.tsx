@@ -1,11 +1,7 @@
-import LandingSection from './components/page/main/LandingSection'
+import MainPage from './components/page/main'
 
 function App() {
-  return (
-    <div>
-      <LandingSection />
-    </div>
-  )
+  return <MainPage />
 }
 
 export default App

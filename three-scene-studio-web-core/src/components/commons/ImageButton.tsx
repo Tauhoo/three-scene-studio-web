@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 import React from 'react'
 
-const Container = styled.div<{ backgroundImage: string }>`
+const Container = styled.div<{ $backgroundImage: string }>`
   width: 100%;
   height: 100%;
   background-color: #07cd17;
-  background-image: url(${props => props.backgroundImage});
+  background-image: url(${props => props.$backgroundImage});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -94,7 +94,7 @@ const ImageButton: React.FC<React.PropsWithChildren<Props>> = ({
 }) => {
   return (
     <Container
-      backgroundImage={backgroundImage}
+      $backgroundImage={backgroundImage}
       onClick={onClick}
       style={containerStyles}
     >
