@@ -70,6 +70,7 @@ const TopSection = styled.div`
     width: 200px;
     background-color: transparent;
     padding: 10px;
+    gap: 15px;
   }
 `
 
@@ -99,10 +100,8 @@ const MenuButtonGroupContainer = styled.div`
   @media (max-width: 700px) {
     flex-direction: row;
     align-items: flex-end;
-  }
-
-  @media (max-width: 1000px) {
-    gap: 30px;
+    padding: 35px 0px;
+    gap: 20px;
   }
 `
 
