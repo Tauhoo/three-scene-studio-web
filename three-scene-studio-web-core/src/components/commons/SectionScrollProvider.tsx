@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 
+const OFFSET_FROM_SCREEN = 10
+const POINT_SIZE = 15
+const INNER_POINT_SIZE = 10
+
 const Container = styled.div`
   height: 100vh;
   width: 100%;
@@ -16,14 +20,25 @@ const ContentContainer = styled.div`
 
 const IndicatorContainer = styled.div`
   position: fixed;
-  top: 50%;
-  right: 30px;
-  width: 20px;
-  transform: translate(-50%, -50%);
-  display: grid;
+  display: flex;
   gap: 20px;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
+
+  transform: translateY(-50%);
+  top: 50%;
+  right: ${OFFSET_FROM_SCREEN}px;
+  flex-direction: column;
+
+  @media (max-width: 700px) {
+    top: auto;
+    right: auto;
+
+    transform: translateX(-50%);
+    left: 50%;
+    bottom: ${OFFSET_FROM_SCREEN}px;
+    flex-direction: row;
+  }
 `
 
 const PointContainer = styled.div`
@@ -34,8 +49,8 @@ const PointContainer = styled.div`
 `
 
 const InnerPointContainer = styled.div`
-  width: 10px;
-  height: 10px;
+  width: ${INNER_POINT_SIZE}px;
+  height: ${INNER_POINT_SIZE}px;
 `
 
 const SectionScrollProvider: React.FC<React.PropsWithChildren> = ({
@@ -55,7 +70,7 @@ const SectionScrollProvider: React.FC<React.PropsWithChildren> = ({
   } | null>(null)
 
   // set up dimension
-  useEffect(() => {
+  const setup = () => {
     if (contentRef.current === null) return
     if (typeof window === 'undefined') return
     const { height: totalSectionHeight } =
@@ -66,6 +81,15 @@ const SectionScrollProvider: React.FC<React.PropsWithChildren> = ({
       sectionHeight,
       totalSectionHeight,
     })
+  }
+  useEffect(() => {
+    setup()
+    if (typeof window === 'undefined') return
+    window.addEventListener('resize', setup)
+    return () => {
+      if (containerRef.current === null) return
+      window.removeEventListener('resize', setup)
+    }
   }, [])
 
   // scroll event handle
@@ -83,7 +107,8 @@ const SectionScrollProvider: React.FC<React.PropsWithChildren> = ({
       const child = ref.current.children[0] as HTMLDivElement | undefined
       if (child === undefined) return
       const visibleScale = 1 - diff
-      const size = visibleScale * 5 + 10
+      const size =
+        visibleScale * (POINT_SIZE - INNER_POINT_SIZE) + INNER_POINT_SIZE
       ref.current.style.width = `${size}px`
       ref.current.style.height = `${size}px`
 
