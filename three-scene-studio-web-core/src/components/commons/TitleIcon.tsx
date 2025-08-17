@@ -24,6 +24,7 @@ const Container = styled.div`
   background-color: black;
   overflow: hidden;
   z-index: 1000;
+  cursor: pointer;
 `
 
 const LineContainer = styled.div`
@@ -120,8 +121,12 @@ const TitleIcon = () => {
     }
   }, [scrolling, screenSize])
 
+  const onClick = () => {
+    scrolling.scrollToTop()
+  }
+
   return (
-    <Container ref={containerRef}>
+    <Container ref={containerRef} onClick={onClick}>
       <LineContainer ref={lineRef1}>
         <Char src={tImage} />
         <Char src={hImage} />

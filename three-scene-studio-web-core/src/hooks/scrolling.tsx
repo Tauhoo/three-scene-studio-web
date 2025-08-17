@@ -19,7 +19,7 @@ interface ScrollContextType {
     parentSize: number
     totalContentSize: number
   }
-
+  scrollToTop: () => void
   addScrollListener: (callback: Callback) => void
   removeScrollListener: (callback: Callback) => void
 }
@@ -104,9 +104,19 @@ export const ScrollProvider: React.FC<
     scrollParentRef.current?.removeEventListener('scroll', listener)
   }
 
+  const scrollToTop = () => {
+    if (scrollParentRef.current === null) return
+    scrollParentRef.current.scroll({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <ScrollContext.Provider
-      value={{ addScrollListener, removeScrollListener, getCurrentScroll }}
+      value={{
+        addScrollListener,
+        removeScrollListener,
+        getCurrentScroll,
+        scrollToTop,
+      }}
     >
       {children}
     </ScrollContext.Provider>

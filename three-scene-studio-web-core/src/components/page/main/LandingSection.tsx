@@ -7,16 +7,12 @@ import { useScreenSize } from '../../../hooks/screenSize'
 import PageSizeContainer from '../../commons/PageSizeContainer'
 
 const Container = styled.div`
-  width: 500px;
+  width: 400px;
   height: 100%;
   scroll-snap-align: start;
   background-color: white;
   display: grid;
   grid-template-rows: max-content 1fr;
-
-  @media (max-width: 1200px) {
-    width: 400px;
-  }
 
   @media (max-width: 1000px) {
     width: 300px;
