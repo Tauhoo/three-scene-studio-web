@@ -50,19 +50,14 @@ const Char = styled.img`
 `
 
 const TitleIcon = () => {
+  const scrolling = useScroll()
   const containerRef = useRef<HTMLDivElement>(null)
   const lineRef1 = useRef<HTMLDivElement>(null)
   const lineRef2 = useRef<HTMLDivElement>(null)
   const lineRef3 = useRef<HTMLDivElement>(null)
   const screenSize = useScreenSize()
 
-  const scrolling = useScroll()
-
-  const onScroll: Callback = (
-    scrollTop: number,
-    parentSize: number,
-    _totalContentSize: number
-  ) => {
+  const onScroll: Callback = ({ sectionIndex }) => {
     if (
       lineRef1.current === null ||
       lineRef2.current === null ||
@@ -82,7 +77,7 @@ const TitleIcon = () => {
     const containerWidth =
       screenSize.width > 1000 ? 400 : screenSize.width > 700 ? 300 : 180
 
-    const sectionProgress = scrollTop / parentSize
+    const sectionProgress = sectionIndex
     const scale = 1 - Math.min(sectionProgress, 1)
     const lines = [lineRef1.current, lineRef2.current, lineRef3.current]
     for (let index = 0; index < lines.length; index++) {
@@ -109,12 +104,7 @@ const TitleIcon = () => {
 
   useEffect(() => {
     const scrollingInfo = scrolling.getCurrentScroll()
-    if (scrollingInfo)
-      onScroll(
-        scrollingInfo.scrollTop,
-        scrollingInfo.parentSize,
-        scrollingInfo.totalContentSize
-      )
+    if (scrollingInfo) onScroll(scrollingInfo)
     scrolling.addScrollListener(onScroll)
     return () => {
       scrolling.removeScrollListener(onScroll)

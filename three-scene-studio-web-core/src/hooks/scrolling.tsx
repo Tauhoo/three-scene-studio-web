@@ -3,22 +3,33 @@ import React, {
   useContext,
   useState,
   useEffect,
-  type RefObject,
   useRef,
 } from 'react'
+import styled from 'styled-components'
+const Container = styled.div`
+  height: 100vh;
+  width: 100%;
+  overflow-y: scroll;
+  position: relative;
+  scroll-snap-type: y mandatory;
+`
 
-export type Callback = (
-  scrollTop: number,
-  parentSize: number,
+const ContentContainer = styled.div`
+  width: 100%;
+  position: relative;
+`
+
+export type ScrollInfo = {
+  scrollTop: number
+  parentSize: number
   totalContentSize: number
-) => void
+  sectionIndex: number
+}
+
+export type Callback = (scrollInfo: ScrollInfo) => void
 
 interface ScrollContextType {
-  getCurrentScroll: () => null | {
-    scrollTop: number
-    parentSize: number
-    totalContentSize: number
-  }
+  getCurrentScroll: () => null | ScrollInfo
   scrollToTop: () => void
   addScrollListener: (callback: Callback) => void
   removeScrollListener: (callback: Callback) => void
@@ -26,14 +37,17 @@ interface ScrollContextType {
 
 const ScrollContext = createContext<ScrollContextType | null>(null)
 
-interface ScrollProviderProps {
-  scrollParentRef: RefObject<HTMLElement | null>
-  scrollChildRef: RefObject<HTMLElement | null>
+export type Props = {
+  overlayChildren?: React.ReactNode
 }
 
-export const ScrollProvider: React.FC<
-  React.PropsWithChildren<ScrollProviderProps>
-> = ({ children, scrollParentRef, scrollChildRef }) => {
+export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
+  overlayChildren,
+  children,
+}) => {
+  const scrollParentRef = useRef<HTMLDivElement>(null)
+  const scrollChildRef = useRef<HTMLDivElement>(null)
+
   const [stat, setStat] = useState<{
     parentSize: number
     totalContentSize: number
@@ -62,42 +76,45 @@ export const ScrollProvider: React.FC<
   const getCurrentScroll = () => {
     if (scrollParentRef.current === null) return null
     if (stat === null) return null
+    if (scrollChildRef.current === null) return null
+
+    const scrollTop = scrollParentRef.current.scrollTop
+
+    const children = [...scrollChildRef.current.children]
+
+    // calculate section index
+    let accumHeight = 0
+    let index = 0
+    let lastRatio = 0
+    for (const child of children) {
+      const { height } = child.getBoundingClientRect()
+      if (scrollTop < accumHeight) continue
+      accumHeight += height
+      lastRatio = Math.min(1, (scrollTop - accumHeight) / height)
+      index++
+    }
+    const sectionIndex = index + lastRatio
     return {
-      scrollTop: scrollParentRef.current.scrollTop,
+      scrollTop,
       parentSize: stat.parentSize,
       totalContentSize: stat.totalContentSize,
+      sectionIndex,
     }
   }
 
-  const addScrollListener = (
-    callback: (
-      scrollTop: number,
-      parentSize: number,
-      totalContentSize: number
-    ) => void
-  ) => {
+  const addScrollListener = (callback: Callback) => {
     if (scrollParentRef.current === null) return
     const listener = () => {
-      if (scrollParentRef.current === null) return
-      if (stat === null) return
-      callback(
-        scrollParentRef.current.scrollTop,
-        stat.parentSize,
-        stat.totalContentSize
-      )
+      const currentScroll = getCurrentScroll()
+      if (currentScroll === null) return
+      callback(currentScroll)
     }
     mapRef.current.set(callback, listener)
 
     scrollParentRef.current.addEventListener('scroll', listener)
   }
 
-  const removeScrollListener = (
-    callback: (
-      scrollTop: number,
-      parentSize: number,
-      totalContentSize: number
-    ) => void
-  ) => {
+  const removeScrollListener = (callback: Callback) => {
     const listener = mapRef.current.get(callback)
     if (listener === undefined) return
     mapRef.current.delete(callback)
@@ -118,7 +135,10 @@ export const ScrollProvider: React.FC<
         scrollToTop,
       }}
     >
-      {children}
+      <Container ref={scrollParentRef}>
+        <ContentContainer ref={scrollChildRef}>{children}</ContentContainer>
+      </Container>
+      {overlayChildren}
     </ScrollContext.Provider>
   )
 }
