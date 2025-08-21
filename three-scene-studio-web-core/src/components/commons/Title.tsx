@@ -11,6 +11,7 @@ const Container = styled.div`
 const Text = styled.h1`
   color: white;
   font-size: 36px;
+  margin: 0px;
   @media (max-width: 1000px) {
     font-size: 36px;
   }
