@@ -56,7 +56,7 @@ const AboutSection = () => {
   return (
     <PageSizeContainer
       style={{
-        backgroundColor: 'red',
+        backgroundColor: 'black',
         scrollSnapAlign: 'start',
       }}
     >
@@ -69,7 +69,11 @@ const AboutSection = () => {
           }}
         >
           <div
-            style={{ height: '160px', width: '160px', backgroundColor: 'blue' }}
+            style={{
+              height: '160px',
+              width: '160px',
+              backgroundColor: 'white',
+            }}
           ></div>
         </div>
         <TextContainer>
