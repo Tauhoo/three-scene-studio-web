@@ -25,6 +25,11 @@ const Container = styled.div`
   overflow: hidden;
   z-index: 1000;
   cursor: pointer;
+
+  @media (max-width: 700px) {
+    top: 10px;
+    left: 10px;
+  }
 `
 
 const LineContainer = styled.div`

@@ -28,7 +28,6 @@ const Container = styled.div`
 const TitleContainer = styled.div`
   width: 400px;
   height: 240px;
-  background-color: #ffffff;
   @media (max-width: 1000px) {
     width: 300px;
     height: 183px;
@@ -106,7 +105,7 @@ const MenuButtonGroupContainer = styled.div`
 const LandingSection = () => {
   const { width } = useScreenSize()
   return (
-    <PageSizeContainer>
+    <PageSizeContainer style={{ backgroundColor: 'red' }}>
       <Container>
         <TopSection>
           <TitleContainer></TitleContainer>
