@@ -1,20 +1,7 @@
 import styled from 'styled-components'
 import PageSizeContainer from '../../commons/PageSizeContainer'
 import Title from '../../commons/Title'
-
-const LogoPadding = styled.div`
-  height: 100%;
-  scroll-snap-align: start;
-  padding-top: 100px;
-
-  @media (max-width: 1000px) {
-    padding-top: 81px;
-  }
-
-  @media (max-width: 700px) {
-    padding-top: 46.5px;
-  }
-`
+import LogoPadding from '../../commons/LogoPadding'
 
 const Container = styled.div`
   height: 100%;
