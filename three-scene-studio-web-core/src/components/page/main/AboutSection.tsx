@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import PageSizeContainer from '../../commons/PageSizeContainer'
 import Title from '../../commons/Title'
 import Paragraph from '../../commons/Paragraph'
+import HideAtWidth from '../../commons/HideAtWidth'
+import ShowAtWidth from '../../commons/ShowAtWidth'
 
 const Container = styled.div`
   height: 100%;
@@ -58,20 +60,6 @@ const TopicContainer = styled.div`
   }
 `
 
-const HideAtWidth = styled.div<{ $width: number; $inline?: boolean }>`
-  @media (max-width: ${({ $width }) => $width}px) {
-    display: none;
-  }
-  display: ${({ $inline }) => ($inline ? 'inline' : 'block')};
-`
-
-const ShowAtWidth = styled.div<{ $width: number; $inline?: boolean }>`
-  @media (max-width: ${({ $width }) => $width}px) {
-    display: ${({ $inline }) => ($inline ? 'inline' : 'block')};
-  }
-  display: none;
-`
-
 const AboutSection = () => {
   return (
     <PageSizeContainer
@@ -120,8 +108,8 @@ const AboutSection = () => {
             </TopicContainer>
           </HideAtWidth>
           <ShowAtWidth $width={900}>
-            <Title>THE PROBLEM</Title>
             <TopicContainer>
+              <Title>THE PROBLEM</Title>
               <Paragraph style={{ color: 'white' }}>
                 Web 3D takes longer than it should: Three.js setup{' '}
                 <HideAtWidth $width={700} $inline>

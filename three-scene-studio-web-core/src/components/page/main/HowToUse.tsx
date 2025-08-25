@@ -34,6 +34,11 @@ const PanelContainer = styled.div`
     gap: 10px;
   }
 
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr repeat(3, 1fr);
+  }
+
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 `
@@ -56,9 +61,41 @@ const VerticalTitleRotator = styled.div`
 `
 
 const HorizontalTitleContainer = styled.div`
+  position: relative;
   display: none;
   @media (max-width: 700px) {
     display: block;
+  }
+
+  @media (max-width: 500px) {
+    min-height: 150px;
+    height: 25vh;
+    width: 100%;
+    background-color: green;
+  }
+`
+
+const Banner = styled.div`
+  background-color: white;
+  grid-column: span 2;
+  @media (max-width: 500px) {
+    grid-column: span 1;
+    display: none;
+  }
+`
+
+const TitlePositioner = styled.div`
+  @media (max-width: 500px) {
+    position: absolute;
+    bottom: 8px;
+    left: 0px;
+    width: 100%;
+  }
+`
+
+const AvoidPaddingLogoPadding = styled(LogoPadding)`
+  @media (max-width: 500px) {
+    padding-top: 0px;
   }
 `
 
@@ -66,22 +103,22 @@ const HowToUse = () => {
   return (
     <PageSizeContainer style={{ backgroundColor: 'black' }}>
       <Container>
-        <LogoPadding>
+        <AvoidPaddingLogoPadding>
           <InnerContainer>
             <HorizontalTitleContainer>
-              <Title>HOW TO USE IT</Title>
+              <TitlePositioner>
+                <Title>HOW TO USE IT</Title>
+              </TitlePositioner>
             </HorizontalTitleContainer>
             <PanelContainer>
               <div style={{ backgroundColor: 'white' }}></div>
-              <div
-                style={{ backgroundColor: 'white', gridColumn: 'span 2' }}
-              ></div>
+              <Banner />
               <div style={{ backgroundColor: 'white' }}></div>
               <div style={{ backgroundColor: 'white' }}></div>
               <div style={{ backgroundColor: 'white' }}></div>
             </PanelContainer>
           </InnerContainer>
-        </LogoPadding>
+        </AvoidPaddingLogoPadding>
         <VerticalTitleContainer>
           <VerticalTitleRotator>
             <Title>HOW TO USE IT</Title>

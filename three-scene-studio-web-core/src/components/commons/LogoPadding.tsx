@@ -10,7 +10,7 @@ const LogoPadding = styled.div`
   }
 
   @media (max-width: 700px) {
-    padding-top: 46.5px;
+    padding-top: 56.5px;
   }
 `
 export default LogoPadding

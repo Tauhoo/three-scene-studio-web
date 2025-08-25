@@ -4,7 +4,7 @@ interface ParagraphProps {
   weight?: 'light' | 'regular' | 'bold'
 }
 
-const Paragraph = styled.p<ParagraphProps>`
+const Paragraph = styled.div<ParagraphProps>`
   font-family: 'Azeret Mono', monospace;
   font-weight: ${props => {
     switch (props.weight) {
