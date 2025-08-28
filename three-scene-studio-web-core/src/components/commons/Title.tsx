@@ -31,10 +31,11 @@ const Line = styled.div<{ $position: 'first' | 'last' }>`
   position: absolute;
 
   left: 0px;
-  ${({ $position }) => ($position === 'first' ? 'top: 18px;' : 'bottom: 19px;')}
+  ${({ $position }) =>
+    $position === 'first' ? 'top: 18px;' : 'bottom: 19.5px;'}
   @media (max-width: 700px) {
     ${({ $position }) =>
-      $position === 'first' ? 'top: 16.25px' : 'bottom: 16.25px'}
+      $position === 'first' ? 'top: 15.25px' : 'bottom: 12.56px'}
   }
 `
 
