@@ -14,6 +14,9 @@ const ButtonContainerPositioner = styled.div`
   width: 100%;
   left: 0px;
   bottom: 20px;
+  @media (max-width: 700px) {
+    bottom: 35px;
+  }
 `
 
 const ButtonContainer = styled.div`
@@ -23,19 +26,24 @@ const ButtonContainer = styled.div`
   flex-wrap: wrap;
   padding: 0px 20px;
   gap: 20px;
+  @media (max-width: 500px) {
+    gap: 10px;
+    padding: 0px 10px;
+  }
 `
 
 const ButtonSizer = styled.div`
   width: 250px;
-  height: 140px;
+  height: 125px;
+
   @media (max-width: 700px) {
     width: 200px;
-    height: 120px;
+    height: 100px;
   }
 
   @media (max-width: 500px) {
-    width: 140px;
-    height: 80px;
+    width: calc(50vw - 20px);
+    height: calc(25vw - 10px);
   }
 `
 
@@ -48,8 +56,8 @@ const TitlePositioner = styled.div`
 
 const MockCharacterImage = styled.div`
   transform: translateX(-50%);
-  width: 300px;
-  height: 600px;
+  width: 100px;
+  height: 200px;
   bottom: 0px;
   left: 50%;
   position: absolute;
