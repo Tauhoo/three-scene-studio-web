@@ -71,10 +71,10 @@ const TopSection = styled.div`
   }
 `
 
-const MenuButtonContainer = styled.div<{ align: 'left' | 'right' }>`
+const MenuButtonContainer = styled.div<{ $align: 'left' | 'right' }>`
   width: 100%;
   padding: ${props =>
-    props.align === 'left' ? '0px 30px 0px 0px' : '0px 0px 0px 30px'};
+    props.$align === 'left' ? '0px 30px 0px 0px' : '0px 0px 0px 30px'};
   aspect-ratio: 2 / 1;
 
   @media (max-width: 700px) {
@@ -104,20 +104,20 @@ const LandingSection = () => {
         <TopSection>
           <TitleContainer></TitleContainer>
           <DescriptionContainer>
-            <Paragraph weight='regular'>
+            <Paragraph $weight='regular'>
               Make 3D on your website easier with online editor tool.
             </Paragraph>
           </DescriptionContainer>
         </TopSection>
         <MenuButtonGroupContainer>
-          <MenuButtonContainer align='right'>
+          <MenuButtonContainer $align='right'>
             <ImageButton
               title='EDITOR'
               titlePosition={width > 700 ? 'left' : 'bottom'}
               backgroundImage={brightBackgroundImage}
             ></ImageButton>
           </MenuButtonContainer>
-          <MenuButtonContainer align='left'>
+          <MenuButtonContainer $align='left'>
             <ImageButton
               title='DOCUMENT'
               titlePosition={width > 700 ? 'right' : 'bottom'}

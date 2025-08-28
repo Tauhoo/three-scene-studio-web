@@ -99,6 +99,24 @@ const AvoidPaddingLogoPadding = styled(LogoPadding)`
   }
 `
 
+const StepContainer = styled.div`
+  position: relative;
+  background-color: white;
+`
+
+const StepNumber = styled.div`
+  color: white;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: black;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const HowToUse = () => {
   return (
     <PageSizeContainer style={{ backgroundColor: 'black' }}>
@@ -111,11 +129,19 @@ const HowToUse = () => {
               </TitlePositioner>
             </HorizontalTitleContainer>
             <PanelContainer>
-              <div style={{ backgroundColor: 'white' }}></div>
+              <StepContainer>
+                <StepNumber>1</StepNumber>
+              </StepContainer>
               <Banner />
-              <div style={{ backgroundColor: 'white' }}></div>
-              <div style={{ backgroundColor: 'white' }}></div>
-              <div style={{ backgroundColor: 'white' }}></div>
+              <StepContainer>
+                <StepNumber>2</StepNumber>
+              </StepContainer>
+              <StepContainer>
+                <StepNumber>3</StepNumber>
+              </StepContainer>
+              <StepContainer>
+                <StepNumber>4</StepNumber>
+              </StepContainer>
             </PanelContainer>
           </InnerContainer>
         </AvoidPaddingLogoPadding>

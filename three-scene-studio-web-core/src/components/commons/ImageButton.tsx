@@ -15,7 +15,7 @@ const Container = styled.div<{ $backgroundImage: string }>`
 `
 
 const TitleContainer = styled.div<{
-  position: 'top' | 'bottom' | 'left' | 'right'
+  $position: 'top' | 'bottom' | 'left' | 'right'
 }>`
   background-color: #000000;
   display: flex;
@@ -26,43 +26,47 @@ const TitleContainer = styled.div<{
   color: white;
   position: absolute;
   top: ${props =>
-    props.position === 'top'
+    props.$position === 'top'
       ? '0px'
-      : props.position === 'bottom'
+      : props.$position === 'bottom'
       ? 'auto'
       : '0px'};
   left: ${props =>
-    props.position === 'left'
+    props.$position === 'left'
       ? '0px'
-      : props.position === 'right'
+      : props.$position === 'right'
       ? 'auto'
       : '0px'};
   bottom: ${props =>
-    props.position === 'top'
+    props.$position === 'top'
       ? 'auto'
-      : props.position === 'bottom'
+      : props.$position === 'bottom'
       ? '0px'
       : '0px'};
   right: ${props =>
-    props.position === 'right'
+    props.$position === 'right'
       ? '0px'
-      : props.position === 'left'
+      : props.$position === 'left'
       ? 'auto'
       : 'auto'};
   width: ${props =>
-    props.position === 'left' || props.position === 'right' ? '30px' : '100%'};
+    props.$position === 'left' || props.$position === 'right'
+      ? '30px'
+      : '100%'};
   height: ${props =>
-    props.position === 'top' || props.position === 'bottom' ? '30px' : '100%'};
+    props.$position === 'top' || props.$position === 'bottom'
+      ? '30px'
+      : '100%'};
 
   @media (max-width: 700px) {
     font-size: 18px;
 
     width: ${props =>
-      props.position === 'left' || props.position === 'right'
+      props.$position === 'left' || props.$position === 'right'
         ? '24px'
         : '100%'};
     height: ${props =>
-      props.position === 'top' || props.position === 'bottom'
+      props.$position === 'top' || props.$position === 'bottom'
         ? '24px'
         : '100%'};
   }
@@ -98,7 +102,7 @@ const ImageButton: React.FC<React.PropsWithChildren<Props>> = ({
       onClick={onClick}
       style={containerStyles}
     >
-      <TitleContainer position={titlePosition}>
+      <TitleContainer $position={titlePosition}>
         {titlePosition === 'left' || titlePosition === 'right' ? (
           <div style={{ transform: 'rotate(-90deg)' }}>{title}</div>
         ) : (
