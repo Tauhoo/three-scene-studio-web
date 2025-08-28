@@ -1,41 +1,42 @@
 import styled from 'styled-components'
 
-const Container = styled.div`
+const Container = styled.div<{ $scale: number }>`
   display: grid;
-  grid-template-columns: 40px max-content 1fr;
+  grid-template-columns: ${({ $scale }) => 40 * $scale}px max-content 1fr;
   gap: 10px;
   justify-items: center;
   align-items: center;
 `
 
-const Text = styled.h1`
+const Text = styled.h1<{ $scale: number }>`
   color: white;
-  font-size: 36px;
+  font-size: ${({ $scale }) => 36 * $scale}px;
   margin: 0px;
 
-  line-height: 42px;
-  @media (max-width: 1000px) {
-    font-size: 36px;
-  }
+  line-height: ${({ $scale }) => 42 * $scale}px;
 
   @media (max-width: 700px) {
-    font-size: 28px;
-    line-height: 32.5px;
+    font-size: ${({ $scale }) => 28 * $scale}px;
+    line-height: ${({ $scale }) => 32.5 * $scale}px;
   }
 `
 
-const Line = styled.div<{ $position: 'first' | 'last' }>`
+const Line = styled.div<{ $position: 'first' | 'last'; $scale: number }>`
   height: 5px;
   width: 100%;
   background-color: white;
   position: absolute;
 
   left: 0px;
-  ${({ $position }) =>
-    $position === 'first' ? 'top: 18px;' : 'bottom: 19.5px;'}
+  ${({ $position, $scale }) =>
+    $position === 'first'
+      ? `top: ${$scale * 18}px;`
+      : `bottom: ${$scale * 19.5}px;`}
   @media (max-width: 700px) {
-    ${({ $position }) =>
-      $position === 'first' ? 'top: 15.25px' : 'bottom: 12.56px'}
+    ${({ $position, $scale }) =>
+      $position === 'first'
+        ? `top: ${$scale * 15.25}px`
+        : `bottom: ${$scale * 12.56}px`}
   }
 `
 
@@ -45,15 +46,25 @@ const LineContainer = styled.div`
   position: relative;
 `
 
-const Title: React.FC<React.PropsWithChildren> = ({ children }) => {
+type Props = {
+  className?: string
+  scale?: number
+}
+
+const Title: React.FC<React.PropsWithChildren<Props>> = ({
+  children,
+  className,
+  scale: propsScale,
+}) => {
+  const scale = propsScale ?? 1
   return (
-    <Container>
+    <Container className={className} $scale={scale}>
       <LineContainer>
-        <Line $position='first' />
+        <Line $position='first' $scale={scale} />
       </LineContainer>
-      <Text>{children}</Text>
+      <Text $scale={scale}>{children}</Text>
       <LineContainer>
-        <Line $position='last' />
+        <Line $position='last' $scale={scale} />
       </LineContainer>
     </Container>
   )

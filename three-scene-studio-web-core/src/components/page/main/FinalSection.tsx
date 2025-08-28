@@ -6,6 +6,8 @@ import brightBackgroundImage from '/images/bright-background.png'
 import blueGreenNoiseBackgroundImage from '/images/blue-green-noise-background.png'
 import LogoPadding from '../../commons/LogoPadding'
 import Title from '../../commons/Title'
+import ShowAtWidth from '../../commons/ShowAtWidth'
+import HideAtWidth from '../../commons/HideAtWidth'
 
 const ButtonContainerPositioner = styled.div`
   display: flex;
@@ -52,6 +54,12 @@ const TitlePositioner = styled.div`
   left: 0px;
   width: 100%;
   padding: 50px 0px;
+  @media (max-width: 700px) {
+    padding: 20px 0px;
+  }
+  @media (max-width: 400px) {
+    padding: 10px 0px;
+  }
 `
 
 const MockCharacterImage = styled.div`
@@ -64,16 +72,37 @@ const MockCharacterImage = styled.div`
   background-color: red;
 `
 
+const StyleTitle = styled(Title)`
+  grid-template-columns: 1fr max-content calc(50vw + 100px);
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr max-content calc(50vw);
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr max-content 1fr;
+  }
+`
+
 const FinalSection = () => {
   return (
     <PageSizeContainer style={{ scrollSnapAlign: 'start', background: 'blue' }}>
       <LogoPadding>
         <TitlePositioner>
-          <Title>
-            START <br />
-            YOUR <br />
-            JOURNEY
-          </Title>
+          <ShowAtWidth $width={700}>
+            <StyleTitle scale={1}>
+              START <br />
+              YOUR <br />
+              JOURNEY
+            </StyleTitle>
+          </ShowAtWidth>
+          <HideAtWidth $width={700}>
+            <StyleTitle scale={1.5}>
+              START <br />
+              YOUR <br />
+              JOURNEY
+            </StyleTitle>
+          </HideAtWidth>
         </TitlePositioner>
         <MockCharacterImage />
         <ButtonContainerPositioner>
