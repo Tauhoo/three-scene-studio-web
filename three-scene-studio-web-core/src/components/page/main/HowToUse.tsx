@@ -117,6 +117,18 @@ const StepNumber = styled.div`
   align-items: center;
 `
 
+const StepContent = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 100px;
+  @media (max-width: 500px) {
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 1fr;
+  }
+`
+
 const HowToUse = () => {
   return (
     <PageSizeContainer style={{ backgroundColor: 'black' }}>
@@ -131,16 +143,32 @@ const HowToUse = () => {
             <PanelContainer>
               <StepContainer>
                 <StepNumber>1</StepNumber>
+                <StepContent>
+                  <div style={{ backgroundColor: 'red' }}></div>
+                  <div style={{ backgroundColor: 'green' }}></div>
+                </StepContent>
               </StepContainer>
               <Banner />
               <StepContainer>
                 <StepNumber>2</StepNumber>
+                <StepContent>
+                  <div style={{ backgroundColor: 'red' }}></div>
+                  <div style={{ backgroundColor: 'green' }}></div>
+                </StepContent>
               </StepContainer>
               <StepContainer>
                 <StepNumber>3</StepNumber>
+                <StepContent>
+                  <div style={{ backgroundColor: 'red' }}></div>
+                  <div style={{ backgroundColor: 'green' }}></div>
+                </StepContent>
               </StepContainer>
               <StepContainer>
                 <StepNumber>4</StepNumber>
+                <StepContent>
+                  <div style={{ backgroundColor: 'red' }}></div>
+                  <div style={{ backgroundColor: 'green' }}></div>
+                </StepContent>
               </StepContainer>
             </PanelContainer>
           </InnerContainer>
