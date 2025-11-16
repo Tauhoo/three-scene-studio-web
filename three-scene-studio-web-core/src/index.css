@@ -2,8 +2,19 @@ body {
   margin: 0px;
   padding: 0px;
   font-family: 'Azeret Mono', monospace;
+
+  /* Hide scrollbar but keep scroll (Firefox) */
+  scrollbar-width: none;
+
+  /* Hide scrollbar but keep scroll (old Edge/IE) */
+  -ms-overflow-style: none;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Hide scrollbar but keep scroll (Chrome, Safari, Edge, Opera) */
+body::-webkit-scrollbar {
+  display: none;
 }
