@@ -2,8 +2,9 @@ import styled from 'styled-components'
 import ImageButton from '../../commons/ImageButton'
 import PageSizeContainer from '../../commons/PageSizeContainer'
 
-import brightBackgroundImage from '/images/bright-background.png'
-import blueGreenNoiseBackgroundImage from '/images/blue-green-noise-background.png'
+import surpriseBackgroundImage from '/images/surprise-background.png'
+import greenWaveBackgroundImage from '/images/green-wave-background.png'
+import rectRainBackgroundImage from '/images/rect-rain-background.png'
 import LogoPadding from '../../commons/LogoPadding'
 import Title from '../../commons/Title'
 import ShowAtWidth from '../../commons/ShowAtWidth'
@@ -111,21 +112,21 @@ const FinalSection = () => {
               <ImageButton
                 title='EDITOR'
                 titlePosition='bottom'
-                backgroundImage={brightBackgroundImage}
+                backgroundImage={surpriseBackgroundImage}
               ></ImageButton>
             </ButtonSizer>
             <ButtonSizer>
               <ImageButton
-                title='EDITOR'
+                title='DOCUMENT'
                 titlePosition='bottom'
-                backgroundImage={blueGreenNoiseBackgroundImage}
+                backgroundImage={greenWaveBackgroundImage}
               ></ImageButton>
             </ButtonSizer>
             <ButtonSizer>
               <ImageButton
-                title='EDITOR'
+                title='CONTACT'
                 titlePosition='bottom'
-                backgroundImage={brightBackgroundImage}
+                backgroundImage={rectRainBackgroundImage}
               ></ImageButton>
             </ButtonSizer>
           </ButtonContainer>

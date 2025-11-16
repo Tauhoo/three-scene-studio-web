@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import Paragraph from '../../commons/Paragraph'
 import ImageButton from '../../commons/ImageButton'
-import brightBackgroundImage from '/images/bright-background.png'
-import blueGreenNoiseBackgroundImage from '/images/blue-green-noise-background.png'
+import surpriseBackgroundImage from '/images/surprise-background.png'
+import greenWaveBackgroundImage from '/images/green-wave-background.png'
 import { useScreenSize } from '../../../hooks/screenSize'
 import PageSizeContainer from '../../commons/PageSizeContainer'
 
@@ -114,14 +114,14 @@ const LandingSection = () => {
             <ImageButton
               title='EDITOR'
               titlePosition={width > 700 ? 'left' : 'bottom'}
-              backgroundImage={brightBackgroundImage}
+              backgroundImage={surpriseBackgroundImage}
             ></ImageButton>
           </MenuButtonContainer>
           <MenuButtonContainer $align='left'>
             <ImageButton
               title='DOCUMENT'
               titlePosition={width > 700 ? 'right' : 'bottom'}
-              backgroundImage={blueGreenNoiseBackgroundImage}
+              backgroundImage={greenWaveBackgroundImage}
             ></ImageButton>
           </MenuButtonContainer>
         </MenuButtonGroupContainer>
