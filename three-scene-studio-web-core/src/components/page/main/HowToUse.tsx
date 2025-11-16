@@ -101,7 +101,6 @@ const AvoidPaddingLogoPadding = styled(LogoPadding)`
 
 const StepContainer = styled.div`
   position: relative;
-  background-color: white;
 `
 
 const StepNumber = styled.div`
@@ -122,11 +121,16 @@ const StepContent = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 100px;
+  grid-template-rows: 1fr 120px;
   @media (max-width: 500px) {
     grid-template-columns: 100px 1fr;
     grid-template-rows: 1fr;
   }
+`
+
+const StepDescription = styled.div`
+  padding: 10px;
+  color: white;
 `
 
 const HowToUse = () => {
@@ -145,7 +149,9 @@ const HowToUse = () => {
                 <StepNumber>1</StepNumber>
                 <StepContent>
                   <div style={{ backgroundColor: 'red' }}></div>
-                  <div style={{ backgroundColor: 'green' }}></div>
+                  <StepDescription>
+                    Set up scene in Blender and export GLTF file.
+                  </StepDescription>
                 </StepContent>
               </StepContainer>
               <Banner />
@@ -153,21 +159,27 @@ const HowToUse = () => {
                 <StepNumber>2</StepNumber>
                 <StepContent>
                   <div style={{ backgroundColor: 'red' }}></div>
-                  <div style={{ backgroundColor: 'green' }}></div>
+                  <StepDescription>
+                    Upload final TSS result file to public internet.
+                  </StepDescription>
                 </StepContent>
               </StepContainer>
               <StepContainer>
                 <StepNumber>3</StepNumber>
                 <StepContent>
                   <div style={{ backgroundColor: 'red' }}></div>
-                  <div style={{ backgroundColor: 'green' }}></div>
+                  <StepDescription>
+                    Adjust and export scene in Three Scene Studio editor.
+                  </StepDescription>
                 </StepContent>
               </StepContainer>
               <StepContainer>
                 <StepNumber>4</StepNumber>
                 <StepContent>
                   <div style={{ backgroundColor: 'red' }}></div>
-                  <div style={{ backgroundColor: 'green' }}></div>
+                  <StepDescription>
+                    Import the scene to your website with SDK.
+                  </StepDescription>
                 </StepContent>
               </StepContainer>
             </PanelContainer>
