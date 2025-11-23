@@ -62,19 +62,13 @@ const TopicContainer = styled.div`
 
 const AboutSection = () => {
   return (
-    <PageSizeContainer
-      style={{
-        backgroundColor: 'black',
-        scrollSnapAlign: 'start',
-      }}
-    >
+    <PageSizeContainer style={{ scrollSnapAlign: 'start' }}>
       <Container>
         <div
           style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            background: 'red',
           }}
         >
           <div

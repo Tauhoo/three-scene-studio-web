@@ -76,7 +76,6 @@ const HorizontalTitleContainer = styled.div`
 `
 
 const Banner = styled.div`
-  background-color: white;
   grid-column: span 2;
   @media (max-width: 500px) {
     grid-column: span 1;
@@ -108,7 +107,6 @@ const StepNumber = styled.div`
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: black;
   width: 25px;
   height: 25px;
   display: flex;
@@ -133,9 +131,92 @@ const StepDescription = styled.div`
   color: white;
 `
 
+const HollowBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  & > .mask-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Adjust this height to control the mask's vertical size */
+    background: black;
+  }
+  & > .mask-bottom {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    /* Adjust this height to control the mask's vertical size */
+    background: black;
+  }
+  & > .mask-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: black;
+  }
+  & > .mask-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background: black;
+  }
+
+  @media (max-width: 500px) {
+    display: none;
+  }
+
+  & > .mask-top {
+    height: ${100 + 20}px;
+  }
+  & > .mask-bottom {
+    height: calc((100vh - (100px + 20px) - 20px - 20px) / 2 + 20px + 20px);
+  }
+  & > .mask-left {
+    width: calc((100vw - 20px - (20px + 70px + 35px) + 20px) / 3 + 20px);
+  }
+  & > .mask-right {
+    width: ${35 + 70 + 20}px;
+  }
+
+  @media (max-width: 1000px) {
+    & > .mask-top {
+      height: ${100}px;
+    }
+    & > .mask-bottom {
+      height: calc((100vh - (100px + 20px) - 20px) / 2 + 20px + 20px);
+    }
+  }
+  @media (max-width: 700px) {
+    & > .mask-bottom {
+      height: calc((100vh - (100px + 20px) - 20px) / 2 + 20px + 28px);
+    }
+    & > .mask-left {
+      width: calc((100vw - 10px - 10px + 10px) / 3 + 10px);
+    }
+    & > .mask-right {
+      width: 10px;
+    }
+  }
+`
+
 const HowToUse = () => {
   return (
-    <PageSizeContainer style={{ backgroundColor: 'black' }}>
+    <PageSizeContainer style={{ position: 'relative' }}>
+      <HollowBackground>
+        <div className='mask-top'></div>
+        <div className='mask-bottom'></div>
+        <div className='mask-left'></div>
+        <div className='mask-right'></div>
+      </HollowBackground>
       <Container>
         <AvoidPaddingLogoPadding>
           <InnerContainer>

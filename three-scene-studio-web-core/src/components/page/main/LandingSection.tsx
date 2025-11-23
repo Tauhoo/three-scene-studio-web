@@ -99,7 +99,7 @@ const MenuButtonGroupContainer = styled.div`
 const LandingSection = () => {
   const { width } = useScreenSize()
   return (
-    <PageSizeContainer style={{ backgroundColor: 'red' }}>
+    <PageSizeContainer>
       <Container>
         <TopSection>
           <TitleContainer></TitleContainer>

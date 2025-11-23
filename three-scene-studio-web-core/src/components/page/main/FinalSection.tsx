@@ -70,7 +70,6 @@ const MockCharacterImage = styled.div`
   bottom: 0px;
   left: 50%;
   position: absolute;
-  background-color: red;
 `
 
 const StyleTitle = styled(Title)`
@@ -87,7 +86,7 @@ const StyleTitle = styled(Title)`
 
 const FinalSection = () => {
   return (
-    <PageSizeContainer style={{ scrollSnapAlign: 'start', background: 'blue' }}>
+    <PageSizeContainer style={{ scrollSnapAlign: 'start' }}>
       <LogoPadding>
         <TitlePositioner>
           <ShowAtWidth $width={700}>
