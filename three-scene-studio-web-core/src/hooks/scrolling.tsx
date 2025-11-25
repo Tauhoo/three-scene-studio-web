@@ -1,15 +1,9 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useRef,
-} from 'react'
+import React, { createContext, useContext, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 const Container = styled.div`
   height: 100vh;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
   position: relative;
   scroll-snap-type: y mandatory;
 `
@@ -33,6 +27,8 @@ interface ScrollContextType {
   scrollToTop: () => void
   addScrollListener: (callback: Callback) => void
   removeScrollListener: (callback: Callback) => void
+  lockScroll: () => void
+  unlockScroll: () => void
 }
 
 const ScrollContext = createContext<ScrollContextType | null>(null)
@@ -48,7 +44,7 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
   const scrollParentRef = useRef<HTMLDivElement>(null)
   const scrollChildRef = useRef<HTMLDivElement>(null)
 
-  const [stat, setStat] = useState<{
+  const statRef = useRef<{
     parentSize: number
     totalContentSize: number
   } | null>(null)
@@ -57,10 +53,10 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
   const setup = () => {
     if (scrollChildRef.current === null || scrollParentRef.current === null)
       return
-    setStat({
+    statRef.current = {
       parentSize: scrollParentRef.current.getBoundingClientRect().height,
       totalContentSize: scrollChildRef.current.getBoundingClientRect().height,
-    })
+    }
   }
 
   useEffect(() => {
@@ -75,7 +71,7 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
 
   const getCurrentScroll = () => {
     if (scrollParentRef.current === null) return null
-    if (stat === null) return null
+    if (statRef.current === null) return null
     if (scrollChildRef.current === null) return null
 
     const scrollTop = scrollParentRef.current.scrollTop
@@ -96,8 +92,8 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
     const sectionIndex = index + lastRatio
     return {
       scrollTop,
-      parentSize: stat.parentSize,
-      totalContentSize: stat.totalContentSize,
+      parentSize: statRef.current.parentSize,
+      totalContentSize: statRef.current.totalContentSize,
       sectionIndex,
     }
   }
@@ -126,6 +122,15 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
     scrollParentRef.current.scroll({ top: 0, behavior: 'smooth' })
   }
 
+  const lockScroll = () => {
+    if (scrollParentRef.current === null) return
+    scrollParentRef.current.style.overflowY = 'hidden'
+  }
+  const unlockScroll = () => {
+    if (scrollParentRef.current === null) return
+    scrollParentRef.current.style.overflowY = 'scroll'
+  }
+
   return (
     <ScrollContext.Provider
       value={{
@@ -133,6 +138,8 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
         removeScrollListener,
         getCurrentScroll,
         scrollToTop,
+        lockScroll,
+        unlockScroll,
       }}
     >
       <Container ref={scrollParentRef}>
