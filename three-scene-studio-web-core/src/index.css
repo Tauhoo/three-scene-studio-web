@@ -8,6 +8,8 @@ body {
 
   /* Hide scrollbar but keep scroll (old Edge/IE) */
   -ms-overflow-style: none;
+
+  background-color: #424242;
 }
 
 * {

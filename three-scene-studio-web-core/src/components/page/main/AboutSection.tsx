@@ -64,21 +64,7 @@ const AboutSection = () => {
   return (
     <PageSizeContainer style={{ scrollSnapAlign: 'start' }}>
       <Container>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <div
-            style={{
-              height: '160px',
-              width: '160px',
-              backgroundColor: 'white',
-            }}
-          ></div>
-        </div>
+        <div></div>
         <TextContainer>
           <HideAtWidth $width={900}>
             <TopicContainer>

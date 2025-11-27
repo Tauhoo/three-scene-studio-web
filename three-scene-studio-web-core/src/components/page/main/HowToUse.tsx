@@ -71,7 +71,6 @@ const HorizontalTitleContainer = styled.div`
     min-height: 150px;
     height: 25vh;
     width: 100%;
-    background-color: green;
   }
 `
 
