@@ -11,7 +11,6 @@ const Container = styled.div`
   height: 100%;
   transform: translate(-50%, -50%);
   z-index: -1;
-  background: #424242;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -170,28 +169,9 @@ const Background3DScene = () => {
           fraction,
     }
 
-    console.log('Position and Scale Debug:', {
-      current: {
-        x: currentTargetPositionAndScale.x(rect),
-        y: currentTargetPositionAndScale.y(rect),
-        scale: currentTargetPositionAndScale.scale,
-      },
-      next: {
-        x: nextTargetPositionAndScale.x(rect),
-        y: nextTargetPositionAndScale.y(rect),
-        scale: nextTargetPositionAndScale.scale,
-      },
-      interpolated: currentPositionAndScale,
-    })
     ref.current.style.top = `${currentPositionAndScale.y}px`
     ref.current.style.left = `${currentPositionAndScale.x}px`
-    ref.current.style.width = `${
-      window.innerWidth * currentPositionAndScale.scale
-    }px`
-    ref.current.style.height = `${
-      window.innerHeight * currentPositionAndScale.scale
-    }px`
-    ref.current.style.transform = `translate(-50%, -50%)`
+    ref.current.style.transform = `translate(-50%, -50%) scale(${currentPositionAndScale.scale})`
   }
 
   const onResize = () => {

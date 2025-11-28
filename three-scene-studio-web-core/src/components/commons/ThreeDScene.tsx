@@ -187,8 +187,6 @@ const ThreeDScene = () => {
 
     if (state.type === 'TRANSITION') {
       if (indexFraction === 0) {
-        console.log('DEBUG: change to idle')
-
         state = {
           type: 'IDLE',
           startFrame: firstStartFrame,

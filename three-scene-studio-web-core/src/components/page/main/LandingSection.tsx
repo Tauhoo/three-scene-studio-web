@@ -1,10 +1,12 @@
 import styled from 'styled-components'
 import Paragraph from '../../commons/Paragraph'
-import ImageButton from '../../commons/ImageButton'
 import surpriseBackgroundImage from '/images/surprise-background.png'
 import greenWaveBackgroundImage from '/images/green-wave-background.png'
+import hammerImage from '/images/hammer.png'
+import bookStackImage from '/images/book-stack.png'
 import { useScreenSize } from '../../../hooks/screenSize'
 import PageSizeContainer from '../../commons/PageSizeContainer'
+import PopupButton from '../../commons/PopupButton'
 
 const Container = styled.div`
   width: 400px;
@@ -111,18 +113,20 @@ const LandingSection = () => {
         </TopSection>
         <MenuButtonGroupContainer>
           <MenuButtonContainer $align='right'>
-            <ImageButton
+            <PopupButton
               title='EDITOR'
-              titlePosition={width > 700 ? 'left' : 'bottom'}
               backgroundImage={surpriseBackgroundImage}
-            ></ImageButton>
+              titlePosition={width > 700 ? 'left' : 'bottom'}
+              popupImage={hammerImage}
+            />
           </MenuButtonContainer>
           <MenuButtonContainer $align='left'>
-            <ImageButton
+            <PopupButton
               title='DOCUMENT'
-              titlePosition={width > 700 ? 'right' : 'bottom'}
               backgroundImage={greenWaveBackgroundImage}
-            ></ImageButton>
+              titlePosition={width > 700 ? 'right' : 'bottom'}
+              popupImage={bookStackImage}
+            />
           </MenuButtonContainer>
         </MenuButtonGroupContainer>
       </Container>

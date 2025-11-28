@@ -1,14 +1,18 @@
 import styled from 'styled-components'
-import ImageButton from '../../commons/ImageButton'
 import PageSizeContainer from '../../commons/PageSizeContainer'
 
 import surpriseBackgroundImage from '/images/surprise-background.png'
 import greenWaveBackgroundImage from '/images/green-wave-background.png'
 import rectRainBackgroundImage from '/images/rect-rain-background.png'
+import hammerImage from '/images/hammer.png'
+import bookStackImage from '/images/book-stack.png'
+import phoneImage from '/images/phone.png'
+
 import LogoPadding from '../../commons/LogoPadding'
 import Title from '../../commons/Title'
 import ShowAtWidth from '../../commons/ShowAtWidth'
 import HideAtWidth from '../../commons/HideAtWidth'
+import PopupButton from '../../commons/PopupButton'
 
 const ButtonContainerPositioner = styled.div`
   display: flex;
@@ -108,25 +112,28 @@ const FinalSection = () => {
         <ButtonContainerPositioner>
           <ButtonContainer>
             <ButtonSizer>
-              <ImageButton
+              <PopupButton
                 title='EDITOR'
                 titlePosition='bottom'
                 backgroundImage={surpriseBackgroundImage}
-              ></ImageButton>
+                popupImage={hammerImage}
+              />
             </ButtonSizer>
             <ButtonSizer>
-              <ImageButton
+              <PopupButton
                 title='DOCUMENT'
                 titlePosition='bottom'
                 backgroundImage={greenWaveBackgroundImage}
-              ></ImageButton>
+                popupImage={bookStackImage}
+              />
             </ButtonSizer>
             <ButtonSizer>
-              <ImageButton
+              <PopupButton
                 title='CONTACT'
                 titlePosition='bottom'
                 backgroundImage={rectRainBackgroundImage}
-              ></ImageButton>
+                popupImage={phoneImage}
+              />
             </ButtonSizer>
           </ButtonContainer>
         </ButtonContainerPositioner>
