@@ -146,7 +146,7 @@ const HollowBackground = styled.div`
   & > .background-image {
     position: absolute;
     object-fit: cover;
-    z-index: -2;
+    z-index: -1;
   }
 
   & > .mask-top {
