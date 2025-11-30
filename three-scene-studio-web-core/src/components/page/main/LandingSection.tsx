@@ -7,6 +7,7 @@ import bookStackImage from '/images/book-stack.png'
 import { useScreenSize } from '../../../hooks/screenSize'
 import PageSizeContainer from '../../commons/PageSizeContainer'
 import PopupButton from '../../commons/PopupButton'
+import { url } from '../../../constants/url'
 
 const Container = styled.div`
   width: 400px;
@@ -119,6 +120,7 @@ const LandingSection = () => {
               backgroundImage={surpriseBackgroundImage}
               titlePosition={width > 700 ? 'left' : 'bottom'}
               popupImage={hammerImage}
+              url={url.EDITOR}
             />
           </MenuButtonContainer>
           <MenuButtonContainer $align='left'>
@@ -127,6 +129,7 @@ const LandingSection = () => {
               backgroundImage={greenWaveBackgroundImage}
               titlePosition={width > 700 ? 'right' : 'bottom'}
               popupImage={bookStackImage}
+              url={url.DOCUMENT}
             />
           </MenuButtonContainer>
         </MenuButtonGroupContainer>

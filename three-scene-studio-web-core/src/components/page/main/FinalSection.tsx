@@ -14,6 +14,7 @@ import ShowAtWidth from '../../commons/ShowAtWidth'
 import HideAtWidth from '../../commons/HideAtWidth'
 import PopupButton from '../../commons/PopupButton'
 import { zIndex } from '../../../constants/layout'
+import { url } from '../../../constants/url'
 
 const ButtonContainerPositioner = styled.div`
   display: flex;
@@ -119,6 +120,7 @@ const FinalSection = () => {
                 titlePosition='bottom'
                 backgroundImage={surpriseBackgroundImage}
                 popupImage={hammerImage}
+                url={url.EDITOR}
               />
             </ButtonSizer>
             <ButtonSizer>
@@ -127,6 +129,7 @@ const FinalSection = () => {
                 titlePosition='bottom'
                 backgroundImage={greenWaveBackgroundImage}
                 popupImage={bookStackImage}
+                url={url.DOCUMENT}
               />
             </ButtonSizer>
             <ButtonSizer>
@@ -135,6 +138,7 @@ const FinalSection = () => {
                 titlePosition='bottom'
                 backgroundImage={rectRainBackgroundImage}
                 popupImage={phoneImage}
+                url={url.DISCORD}
               />
             </ButtonSizer>
           </ButtonContainer>

@@ -15,8 +15,15 @@ const PopupImage = styled.img<{
       : '50%'};
   transform: translate(-50%, -50%);
   transition-duration: 0.3s;
+`
+
+const ContentLinkWrapper = styled.a`
+  width: 100%;
+  height: 100%;
   &:hover {
-    transform: translate(-50%, -50%) scale(1.3);
+    & > * {
+      transform: translate(-50%, -50%) scale(1.3);
+    }
   }
 `
 
@@ -25,6 +32,7 @@ type Props = {
   backgroundImage: string
   popupImage: string
   titlePosition: 'left' | 'right' | 'top' | 'bottom'
+  url: string
 }
 
 const PopupButton: React.FC<Props> = ({
@@ -32,6 +40,7 @@ const PopupButton: React.FC<Props> = ({
   backgroundImage,
   titlePosition,
   popupImage,
+  url,
 }) => {
   return (
     <ImageButton
@@ -39,7 +48,9 @@ const PopupButton: React.FC<Props> = ({
       backgroundImage={backgroundImage}
       titlePosition={titlePosition}
     >
-      <PopupImage src={popupImage} $titlePosition={titlePosition} />
+      <ContentLinkWrapper href={url} target='_blank'>
+        <PopupImage src={popupImage} $titlePosition={titlePosition} />
+      </ContentLinkWrapper>
     </ImageButton>
   )
 }
