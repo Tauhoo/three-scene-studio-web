@@ -134,7 +134,7 @@ const FinalSection = () => {
             </ButtonSizer>
             <ButtonSizer>
               <PopupButton
-                title='CONTACT'
+                title='DISCORD'
                 titlePosition='bottom'
                 backgroundImage={rectRainBackgroundImage}
                 popupImage={phoneImage}

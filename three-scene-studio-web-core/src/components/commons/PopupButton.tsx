@@ -18,6 +18,7 @@ const PopupImage = styled.img<{
 `
 
 const ContentLinkWrapper = styled.a`
+  display: block;
   width: 100%;
   height: 100%;
   &:hover {
