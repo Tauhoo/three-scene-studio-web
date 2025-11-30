@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useRef } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import styled from 'styled-components'
 const Container = styled.div`
   height: 100vh;
@@ -29,6 +35,7 @@ interface ScrollContextType {
   removeScrollListener: (callback: Callback) => void
   lockScroll: () => void
   unlockScroll: () => void
+  lock: boolean
 }
 
 const ScrollContext = createContext<ScrollContextType | null>(null)
@@ -41,6 +48,7 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
   overlayChildren,
   children,
 }) => {
+  const [lock, setLock] = useState(true)
   const scrollParentRef = useRef<HTMLDivElement>(null)
   const scrollChildRef = useRef<HTMLDivElement>(null)
 
@@ -124,10 +132,12 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
 
   const lockScroll = () => {
     if (scrollParentRef.current === null) return
+    setLock(true)
     scrollParentRef.current.style.overflowY = 'hidden'
   }
   const unlockScroll = () => {
     if (scrollParentRef.current === null) return
+    setLock(false)
     scrollParentRef.current.style.overflowY = 'scroll'
   }
 
@@ -140,6 +150,7 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
         scrollToTop,
         lockScroll,
         unlockScroll,
+        lock,
       }}
     >
       <Container ref={scrollParentRef}>

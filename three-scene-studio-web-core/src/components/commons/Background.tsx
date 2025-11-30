@@ -40,7 +40,7 @@ const Background = () => {
     return () => {
       scrolling.removeScrollListener(onScroll)
     }
-  }, [])
+  }, [scrolling])
 
   return (
     <Container>

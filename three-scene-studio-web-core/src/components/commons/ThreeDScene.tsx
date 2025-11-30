@@ -75,12 +75,7 @@ const ThreeDScene = () => {
 
   const ref = useRef<HTMLDivElement | null>(null)
   const managerRef = useRef<ThreeSceneStudioManager | null>(null)
-  const {
-    getCurrentScroll,
-    addScrollListener,
-    removeScrollListener,
-    unlockScroll,
-  } = useScroll()
+  const scrolling = useScroll()
 
   const setup = async (manager: ThreeSceneStudioManager) => {
     await manager.loadWorkFromURL('/scene.tss')
@@ -117,7 +112,7 @@ const ThreeDScene = () => {
         const firstStartFrame = animationInfoList[0].repeatStartFrame
         state.currentFrame += data.delta * animationSpeed
         if (firstStartFrame <= state.currentFrame) {
-          unlockScroll()
+          scrolling.unlockScroll()
           state = {
             type: 'IDLE',
             loopDuration: animationInfoList[0].repeatDuration,
@@ -230,14 +225,14 @@ const ThreeDScene = () => {
   }
 
   useEffect(() => {
-    const scrollInfo = getCurrentScroll()
+    const scrollInfo = scrolling.getCurrentScroll()
     previousIndexRef.current = scrollInfo?.sectionIndex ?? 0
     if (scrollInfo !== null) onScroll(scrollInfo)
-    addScrollListener(onScroll)
+    scrolling.addScrollListener(onScroll)
     return () => {
-      removeScrollListener(onScroll)
+      scrolling.removeScrollListener(onScroll)
     }
-  }, [])
+  }, [scrolling])
 
   return <Container ref={ref}></Container>
 }
