@@ -22,9 +22,7 @@ type TargetPositionAndScale = {
   scale: number
 }
 
-const sectionOneTargetPositionAndScale = (
-  rect: DOMRect
-): TargetPositionAndScale => {
+const sectionOneTargetPositionAndScale = (): TargetPositionAndScale => {
   if (window.innerWidth > 1000) {
     return {
       x: () => (window.innerWidth - 400) / 2 + 400,
@@ -48,9 +46,7 @@ const sectionOneTargetPositionAndScale = (
   }
 }
 
-const sectionTwoTargetPositionAndScale = (
-  rect: DOMRect
-): TargetPositionAndScale => {
+const sectionTwoTargetPositionAndScale = (): TargetPositionAndScale => {
   if (window.innerWidth > 1000) {
     return {
       x: () => 500 / 2 + 30,
@@ -116,9 +112,7 @@ const sectionThreeTargetPositionAndScale = (
   }
 }
 
-const sectionFourTargetPositionAndScale = (
-  rect: DOMRect
-): TargetPositionAndScale => {
+const sectionFourTargetPositionAndScale = (): TargetPositionAndScale => {
   return {
     x: () => window.innerWidth / 2,
     y: () => window.innerHeight / 2,
