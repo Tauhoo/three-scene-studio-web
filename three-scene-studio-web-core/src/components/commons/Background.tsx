@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import aboutBackgroundImage from '/images/section-backgrounds/about-background.png'
 import endingBackgroundImage from '/images/section-backgrounds/ending-background.png'
 import landingBackgroundImage from '/images/section-backgrounds/landing-background.png'
-import howToBannerBackgroundImage from '/images/how-to-banners/how-to-banner-background.png'
 import { useScroll, type ScrollInfo } from '../../hooks/scrolling'
 import { useEffect, useState } from 'react'
 

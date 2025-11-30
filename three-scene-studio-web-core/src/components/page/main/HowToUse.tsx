@@ -2,6 +2,10 @@ import styled from 'styled-components'
 import PageSizeContainer from '../../commons/PageSizeContainer'
 import Title from '../../commons/Title'
 import LogoPadding from '../../commons/LogoPadding'
+import importSceneBanner from '/images/how-to-banners/import-scene-banner.png'
+import setupSceneBanner from '/images/how-to-banners/setup-scene-banner.png'
+import tssEditBanner from '/images/how-to-banners/tss-edit-banner.png'
+import uploadFileToCloudBanner from '/images/how-to-banners/upload-file-to-cloud-banner.png'
 
 const Container = styled.div`
   height: 100%;
@@ -207,6 +211,15 @@ const HollowBackground = styled.div`
   }
 `
 
+const StepImage = styled.img`
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+`
+
 const HowToUse = () => {
   return (
     <PageSizeContainer style={{ position: 'relative' }}>
@@ -228,7 +241,7 @@ const HowToUse = () => {
               <StepContainer>
                 <StepNumber>1</StepNumber>
                 <StepContent>
-                  <div style={{ backgroundColor: 'red' }}></div>
+                  <StepImage src={setupSceneBanner} />
                   <StepDescription>
                     Set up scene in Blender and export GLTF file.
                   </StepDescription>
@@ -238,7 +251,7 @@ const HowToUse = () => {
               <StepContainer>
                 <StepNumber>2</StepNumber>
                 <StepContent>
-                  <div style={{ backgroundColor: 'red' }}></div>
+                  <StepImage src={uploadFileToCloudBanner} />
                   <StepDescription>
                     Upload final TSS result file to public internet.
                   </StepDescription>
@@ -247,7 +260,7 @@ const HowToUse = () => {
               <StepContainer>
                 <StepNumber>3</StepNumber>
                 <StepContent>
-                  <div style={{ backgroundColor: 'red' }}></div>
+                  <StepImage src={tssEditBanner} />
                   <StepDescription>
                     Adjust and export scene in Three Scene Studio editor.
                   </StepDescription>
@@ -256,7 +269,7 @@ const HowToUse = () => {
               <StepContainer>
                 <StepNumber>4</StepNumber>
                 <StepContent>
-                  <div style={{ backgroundColor: 'red' }}></div>
+                  <StepImage src={importSceneBanner} />
                   <StepDescription>
                     Import the scene to your website with SDK.
                   </StepDescription>
