@@ -95,7 +95,19 @@ const ThreeDScene = () => {
       )
     )
       return
+    const cameraOffsetVariable =
+      manager.variableManager.variableStorage.getVariableByRef('cam_offset')
+
+    if (
+      !(
+        cameraOffsetVariable instanceof ReferrableVariable &&
+        cameraOffsetVariable.value instanceof NumberValue
+      )
+    )
+      return
+    const cameraOffsetValue: NumberValue = cameraOffsetVariable.value
     const animationValue: NumberValue = animationVariable.value
+    cameraOffsetValue.set(1)
     animationValue.set(0)
 
     manager.clock.addListener('TICK', data => {

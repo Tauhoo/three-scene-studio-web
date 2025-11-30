@@ -48,6 +48,7 @@ const DescriptionContainer = styled.div`
   // start mobile mode
   @media (max-width: 700px) {
     padding: 0px 10px;
+    color: white;
   }
 `
 
