@@ -4,7 +4,7 @@ import React from 'react'
 const Container = styled.div<{ $backgroundImage: string }>`
   width: 100%;
   height: 100%;
-  background-color: #07cd17;
+  background-color: #828282;
   background-image: url(${props => props.$backgroundImage});
   background-size: cover;
   background-position: center;
