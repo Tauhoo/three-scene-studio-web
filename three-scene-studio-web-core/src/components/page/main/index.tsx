@@ -1,4 +1,5 @@
 import { ScrollProvider } from '../../../hooks/scrolling'
+import Background from '../../commons/Background'
 import Background3DScene from '../../commons/Background3DScene'
 import ScrollIndicator from '../../commons/ScrollIndicator'
 import TitleIcon from '../../commons/TitleIcon'
@@ -15,6 +16,7 @@ function MainPage() {
           <TitleIcon />
           <ScrollIndicator />
           <Background3DScene />
+          <Background />
         </>
       }
     >
