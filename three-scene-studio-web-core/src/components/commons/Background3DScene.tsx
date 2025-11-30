@@ -166,7 +166,13 @@ const Background3DScene = () => {
 
     ref.current.style.top = `${currentPositionAndScale.y}px`
     ref.current.style.left = `${currentPositionAndScale.x}px`
-    ref.current.style.transform = `translate(-50%, -50%) scale(${currentPositionAndScale.scale})`
+    ref.current.style.width = `${
+      currentPositionAndScale.scale * window.innerWidth
+    }px`
+    ref.current.style.height = `${
+      currentPositionAndScale.scale * window.innerHeight
+    }px`
+    ref.current.style.transform = `translate(-50%, -50%)`
   }
 
   const onResize = () => {
