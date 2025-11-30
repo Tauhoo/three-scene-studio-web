@@ -6,6 +6,7 @@ import importSceneBanner from '/images/how-to-banners/import-scene-banner.png'
 import setupSceneBanner from '/images/how-to-banners/setup-scene-banner.png'
 import tssEditBanner from '/images/how-to-banners/tss-edit-banner.png'
 import uploadFileToCloudBanner from '/images/how-to-banners/upload-file-to-cloud-banner.png'
+import howToUseBackgroundImage from '/images/section-backgrounds/how-to-banner-background.png'
 
 const Container = styled.div`
   height: 100%;
@@ -142,6 +143,12 @@ const HollowBackground = styled.div`
   height: 100%;
   pointer-events: none;
 
+  & > .background-image {
+    position: absolute;
+    object-fit: cover;
+    z-index: -2;
+  }
+
   & > .mask-top {
     position: absolute;
     top: 0;
@@ -180,33 +187,65 @@ const HollowBackground = styled.div`
   & > .mask-top {
     height: ${100 + 20}px;
   }
+
   & > .mask-bottom {
     height: calc((100vh - (100px + 20px) - 20px - 20px) / 2 + 20px + 20px);
   }
+
   & > .mask-left {
     width: calc((100vw - 20px - (20px + 70px + 35px) + 20px) / 3 + 20px);
   }
+
   & > .mask-right {
     width: ${35 + 70 + 20}px;
+  }
+
+  & > .background-image {
+    height: calc(
+      100vh - ${100 + 20}px -
+        ((100vh - (100px + 20px) - 20px - 20px) / 2 + 20px + 20px)
+    );
+    width: calc(
+      100vw - ((100vw - 20px - (20px + 70px + 35px) + 20px) / 3 + 20px) -
+        ${35 + 70 + 20}px
+    );
+    left: calc((100vw - 20px - (20px + 70px + 35px) + 20px) / 3 + 20px);
+    top: ${100 + 20}px;
   }
 
   @media (max-width: 1000px) {
     & > .mask-top {
       height: ${100}px;
     }
+
     & > .mask-bottom {
       height: calc((100vh - (100px + 20px) - 20px) / 2 + 20px + 20px);
     }
+
+    & > .background-image {
+      height: calc(
+        100vh - ${100}px - ((100vh - (100px + 20px) - 20px) / 2 + 20px + 20px)
+      );
+      top: ${100}px;
+    }
   }
+
   @media (max-width: 700px) {
     & > .mask-bottom {
       height: calc((100vh - (100px + 20px) - 20px) / 2 + 20px + 28px);
     }
+
     & > .mask-left {
       width: calc((100vw - 10px - 10px + 10px) / 3 + 10px);
     }
+
     & > .mask-right {
       width: 10px;
+    }
+
+    & > .background-image {
+      width: calc(100vw - ((100vw - 10px - 10px + 10px) / 3 + 10px) - 10px);
+      left: calc((100vw - 10px - 10px + 10px) / 3 + 10px);
     }
   }
 `
@@ -228,6 +267,11 @@ const HowToUse = () => {
         <div className='mask-bottom'></div>
         <div className='mask-left'></div>
         <div className='mask-right'></div>
+        <img
+          className='background-image'
+          src={howToUseBackgroundImage}
+          style={{ position: 'absolute', objectFit: 'cover' }}
+        />
       </HollowBackground>
       <Container>
         <AvoidPaddingLogoPadding>

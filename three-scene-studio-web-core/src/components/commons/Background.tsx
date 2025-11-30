@@ -25,17 +25,6 @@ const ImageBackground = styled.img<{ $opacity: number }>`
   left: 0px;
 `
 
-const DarkBackground = styled.div<{ $opacity: number }>`
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  opacity: ${props => props.$opacity};
-  transition-duration: 0.3s;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-`
-
 const Background = () => {
   const scrolling = useScroll()
   const [scrollIndex, setScrollIndex] = useState(0)
@@ -62,7 +51,6 @@ const Background = () => {
         src={aboutBackgroundImage}
         $opacity={scrollIndex === 1 ? 1 : 0}
       />
-      <DarkBackground $opacity={scrollIndex === 2 ? 1 : 0} />
       <ImageBackground
         src={endingBackgroundImage}
         $opacity={scrollIndex === 3 ? 1 : 0}
