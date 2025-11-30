@@ -2,6 +2,7 @@ import { styled } from 'styled-components'
 import ThreeDScene from './ThreeDScene'
 import { useEffect, useRef } from 'react'
 import { useScroll, type ScrollInfo } from '../../hooks/scrolling'
+import { zIndex } from '../../constants/layout'
 
 const Container = styled.div`
   position: fixed;
@@ -10,7 +11,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   transform: translate(-50%, -50%);
-  z-index: -1;
+  z-index: ${zIndex.SCENE_3D};
   display: flex;
   justify-content: center;
   align-items: center;

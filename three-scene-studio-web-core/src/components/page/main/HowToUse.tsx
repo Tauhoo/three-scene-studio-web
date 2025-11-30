@@ -7,6 +7,7 @@ import setupSceneBanner from '/images/how-to-banners/setup-scene-banner.png'
 import tssEditBanner from '/images/how-to-banners/tss-edit-banner.png'
 import uploadFileToCloudBanner from '/images/how-to-banners/upload-file-to-cloud-banner.png'
 import howToUseBackgroundImage from '/images/section-backgrounds/how-to-banner-background.png'
+import { zIndex } from '../../../constants/layout'
 
 const Container = styled.div`
   height: 100%;
@@ -151,7 +152,7 @@ const HollowBackground = styled.div`
   & > .background-image {
     position: absolute;
     object-fit: cover;
-    z-index: -1;
+    z-index: ${zIndex.BACKGROUND};
   }
 
   & > .mask-top {

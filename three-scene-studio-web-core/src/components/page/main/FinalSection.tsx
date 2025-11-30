@@ -13,6 +13,7 @@ import Title from '../../commons/Title'
 import ShowAtWidth from '../../commons/ShowAtWidth'
 import HideAtWidth from '../../commons/HideAtWidth'
 import PopupButton from '../../commons/PopupButton'
+import { zIndex } from '../../../constants/layout'
 
 const ButtonContainerPositioner = styled.div`
   display: flex;
@@ -65,6 +66,7 @@ const TitlePositioner = styled.div`
   @media (max-width: 400px) {
     padding: 10px 0px;
   }
+  z-index: ${zIndex.UNDER_3D_SCENE};
 `
 
 const MockCharacterImage = styled.div`

@@ -4,6 +4,7 @@ import endingBackgroundImage from '/images/section-backgrounds/ending-background
 import landingBackgroundImage from '/images/section-backgrounds/landing-background.png'
 import { useScroll, type ScrollInfo } from '../../hooks/scrolling'
 import { useEffect, useState } from 'react'
+import { zIndex } from '../../constants/layout'
 
 const Container = styled.div`
   position: fixed;
@@ -11,7 +12,7 @@ const Container = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2;
+  z-index: ${zIndex.BACKGROUND};
 `
 
 const ImageBackground = styled.img<{ $opacity: number }>`

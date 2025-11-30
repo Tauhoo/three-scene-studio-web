@@ -13,6 +13,7 @@ import uImage from '/images/characters/u.svg'
 import { useEffect, useRef } from 'react'
 import { useScroll, type Callback } from '../../hooks/scrolling'
 import { useScreenSize } from '../../hooks/screenSize'
+import { zIndex } from '../../constants/layout'
 
 const Container = styled.div`
   position: fixed;
@@ -23,7 +24,7 @@ const Container = styled.div`
 
   background-color: black;
   overflow: hidden;
-  z-index: 1000;
+  z-index: ${zIndex.TITLE_ICON};
   cursor: pointer;
 
   @media (max-width: 700px) {
