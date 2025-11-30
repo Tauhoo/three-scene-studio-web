@@ -18,6 +18,10 @@ const Container = styled.div`
     padding-right: 0px;
     padding-bottom: 35px;
   }
+
+  @media (max-width: 500px) {
+    background-color: black;
+  }
 `
 
 const InnerContainer = styled.div`
