@@ -79,7 +79,8 @@ const ThreeDScene = () => {
   const { manager, loading } = useThreeSceneStudio()
 
   const setup = (manager: ThreeSceneStudioManager) => {
-    if (loading) return
+    if (loading) return () => {}
+
     const animationVariable =
       manager.variableManager.variableStorage.getVariableByRef('animation')
 
@@ -89,7 +90,8 @@ const ThreeDScene = () => {
         animationVariable.value instanceof NumberValue
       )
     )
-      return
+      return () => {}
+
     const cameraOffsetVariable =
       manager.variableManager.variableStorage.getVariableByRef('cam_offset')
 
@@ -99,13 +101,14 @@ const ThreeDScene = () => {
         cameraOffsetVariable.value instanceof NumberValue
       )
     )
-      return
+      return () => {}
+
     const cameraOffsetValue: NumberValue = cameraOffsetVariable.value
     const animationValue: NumberValue = animationVariable.value
     cameraOffsetValue.set(1)
     animationValue.set(0)
 
-    manager.clock.addListener('TICK', data => {
+    const onTick = (data: { delta: number }) => {
       let state = animationStateRef.current
 
       if (state.type === 'INIT') {
@@ -147,17 +150,20 @@ const ThreeDScene = () => {
           state.currentLoopFrame = 0
         }
       }
-    })
-  }
+    }
 
-  useEffect(() => {
-    if (ref.current === null) return
-    ref.current.appendChild(manager.context.canvasContainer)
-    setup(manager)
+    if (ref.current !== null)
+      ref.current.appendChild(manager.context.canvasContainer)
+    manager.clock.addListener('TICK', onTick)
     return () => {
       if (ref.current !== null)
         ref.current.removeChild(manager.context.canvasContainer)
+      manager.clock.removeListener('TICK', onTick)
     }
+  }
+
+  useEffect(() => {
+    return setup(manager)
   }, [loading])
 
   const previousIndexRef = useRef<number>(0)
