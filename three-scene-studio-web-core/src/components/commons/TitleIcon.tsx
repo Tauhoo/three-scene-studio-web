@@ -64,8 +64,6 @@ const TitleIcon = () => {
   const screenSize = useScreenSize()
 
   const onScroll: Callback = ({ sectionIndex }) => {
-    console.log('DEBUG: title icon onScroll index', sectionIndex)
-
     if (
       lineRef1.current === null ||
       lineRef2.current === null ||

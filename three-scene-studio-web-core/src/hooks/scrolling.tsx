@@ -47,12 +47,6 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
   const mapRef = useRef<Map<Callback, () => void>>(new Map())
 
   const getCurrentScroll = () => {
-    console.log(
-      'DEBUG: ref current',
-      scrollParentRef.current === null,
-      scrollChildRef.current === null
-    )
-
     if (scrollParentRef.current === null) return null
     if (scrollChildRef.current === null) return null
 
@@ -70,11 +64,6 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
     }
 
     const sectionIndex = currentIndex + lastRatio
-
-    console.log('DEBUG: current scroll value', {
-      scrollTop,
-      sectionIndex,
-    })
 
     return {
       scrollTop,
