@@ -1,4 +1,5 @@
 import { ScrollProvider } from '../../../hooks/scrolling'
+import { ThreeSceneStudioProvider } from '../../../hooks/threeSceneStudio'
 import Background from '../../commons/Background'
 import Background3DScene from '../../commons/Background3DScene'
 import ScrollIndicator from '../../commons/ScrollIndicator'
@@ -10,21 +11,23 @@ import LandingSection from './LandingSection'
 
 function MainPage() {
   return (
-    <ScrollProvider
-      overlayChildren={
-        <>
-          <TitleIcon />
-          <ScrollIndicator />
-          <Background3DScene />
-          <Background />
-        </>
-      }
-    >
-      <LandingSection />
-      <AboutSection />
-      <HowToUse />
-      <FinalSection />
-    </ScrollProvider>
+    <ThreeSceneStudioProvider url='/scene.tss'>
+      <ScrollProvider
+        overlayChildren={
+          <>
+            <TitleIcon />
+            <ScrollIndicator />
+            <Background3DScene />
+            <Background />
+          </>
+        }
+      >
+        <LandingSection />
+        <AboutSection />
+        <HowToUse />
+        <FinalSection />
+      </ScrollProvider>
+    </ThreeSceneStudioProvider>
   )
 }
 

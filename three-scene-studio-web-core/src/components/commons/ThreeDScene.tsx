@@ -6,6 +6,7 @@ import {
   ThreeSceneStudioManager,
 } from 'three-scene-studio-core'
 import { useScroll, type ScrollInfo } from '../../hooks/scrolling'
+import { useThreeSceneStudio } from '../../hooks/threeSceneStudio'
 
 const Container = styled.div`
   position: relative;
@@ -74,12 +75,11 @@ const ThreeDScene = () => {
   })
 
   const ref = useRef<HTMLDivElement | null>(null)
-  const managerRef = useRef<ThreeSceneStudioManager | null>(null)
   const scrolling = useScroll()
+  const { manager, loading } = useThreeSceneStudio()
 
-  const setup = async (manager: ThreeSceneStudioManager) => {
-    await manager.loadWorkFromURL('/scene.tss')
-    manager.clock.start()
+  const setup = (manager: ThreeSceneStudioManager) => {
+    if (loading) return
     const animationVariable =
       manager.variableManager.variableStorage.getVariableByRef('animation')
 
@@ -152,21 +152,17 @@ const ThreeDScene = () => {
 
   useEffect(() => {
     if (ref.current === null) return
-    const manager = new ThreeSceneStudioManager()
     ref.current.appendChild(manager.context.canvasContainer)
-    managerRef.current = manager
     setup(manager)
     return () => {
       if (ref.current !== null)
         ref.current.removeChild(manager.context.canvasContainer)
-      manager.destroy()
     }
-  }, [])
+  }, [loading])
 
   const previousIndexRef = useRef<number>(0)
   const onScroll = (info: ScrollInfo) => {
     if (ref.current === null) return
-    if (managerRef.current === null) return
 
     // set animation start time
     let state = animationStateRef.current
@@ -210,9 +206,7 @@ const ThreeDScene = () => {
     const frame = state.currentLoopFrame + state.startFrame
     const animationProgress = frame / totalFrameDuration
     const animationVariable =
-      managerRef.current.variableManager.variableStorage.getVariableByRef(
-        'animation'
-      )
+      manager.variableManager.variableStorage.getVariableByRef('animation')
     if (
       !(
         animationVariable instanceof ReferrableVariable &&
