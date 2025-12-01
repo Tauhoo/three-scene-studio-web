@@ -78,6 +78,13 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
   }, [])
 
   const getCurrentScroll = () => {
+    console.log(
+      'DEBUG: ref current',
+      scrollParentRef.current === null,
+      statRef.current === null,
+      scrollChildRef.current === null
+    )
+
     if (scrollParentRef.current === null) return null
     if (statRef.current === null) return null
     if (scrollChildRef.current === null) return null
