@@ -78,6 +78,14 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
   }, [])
 
   const getCurrentScroll = () => {
+    if (lock)
+      return {
+        scrollTop: 0,
+        parentSize: 0,
+        totalContentSize: 0,
+        sectionIndex: 0,
+      }
+
     if (scrollParentRef.current === null) return null
     if (statRef.current === null) return null
     if (scrollChildRef.current === null) return null
