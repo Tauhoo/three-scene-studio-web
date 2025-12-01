@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import PageSizeContainer from '../../commons/PageSizeContainer'
 
-import surpriseBackgroundImage from '/images/surprise-background.png'
-import greenWaveBackgroundImage from '/images/green-wave-background.png'
-import rectRainBackgroundImage from '/images/rect-rain-background.png'
-import hammerImage from '/images/hammer.png'
-import bookStackImage from '/images/book-stack.png'
-import phoneImage from '/images/phone.png'
+import surpriseBackgroundImage from '/images/surprise-background.webp'
+import greenWaveBackgroundImage from '/images/green-wave-background.webp'
+import rectRainBackgroundImage from '/images/rect-rain-background.webp'
+import hammerImage from '/images/hammer.webp'
+import bookStackImage from '/images/book-stack.webp'
+import phoneImage from '/images/phone.webp'
 
 import LogoPadding from '../../commons/LogoPadding'
 import Title from '../../commons/Title'
