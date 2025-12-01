@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { createContext, useContext, useRef, useState } from 'react'
 import styled from 'styled-components'
 const Container = styled.div`
   height: 100vh;
@@ -21,8 +15,6 @@ const ContentContainer = styled.div`
 
 export type ScrollInfo = {
   scrollTop: number
-  parentSize: number
-  totalContentSize: number
   sectionIndex: number
 }
 
@@ -52,41 +44,16 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
   const scrollParentRef = useRef<HTMLDivElement>(null)
   const scrollChildRef = useRef<HTMLDivElement>(null)
 
-  const statRef = useRef<{
-    parentSize: number
-    totalContentSize: number
-  } | null>(null)
   const mapRef = useRef<Map<Callback, () => void>>(new Map())
-
-  const setup = () => {
-    if (scrollChildRef.current === null || scrollParentRef.current === null)
-      return
-    statRef.current = {
-      parentSize: scrollParentRef.current.getBoundingClientRect().height,
-      totalContentSize: scrollChildRef.current.getBoundingClientRect().height,
-    }
-  }
-
-  useEffect(() => {
-    setup()
-    if (typeof window === 'undefined') return
-    window.addEventListener('resize', setup)
-    return () => {
-      if (typeof window === 'undefined') return
-      window.removeEventListener('resize', setup)
-    }
-  }, [])
 
   const getCurrentScroll = () => {
     console.log(
       'DEBUG: ref current',
       scrollParentRef.current === null,
-      statRef.current === null,
       scrollChildRef.current === null
     )
 
     if (scrollParentRef.current === null) return null
-    if (statRef.current === null) return null
     if (scrollChildRef.current === null) return null
 
     const scrollTop = scrollParentRef.current.scrollTop
@@ -106,15 +73,11 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
 
     console.log('DEBUG: current scroll value', {
       scrollTop,
-      parentSize: statRef.current.parentSize,
-      totalContentSize: statRef.current.totalContentSize,
       sectionIndex,
     })
 
     return {
       scrollTop,
-      parentSize: statRef.current.parentSize,
-      totalContentSize: statRef.current.totalContentSize,
       sectionIndex,
     }
   }
