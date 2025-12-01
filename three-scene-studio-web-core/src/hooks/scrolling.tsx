@@ -83,17 +83,6 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
     if (scrollChildRef.current === null) return null
 
     const scrollTop = scrollParentRef.current.scrollTop
-    // const children = [...scrollChildRef.current.children]
-    // let accumHeight = 0
-    // let index = 0
-    // let lastRatio = 0
-    // for (const child of children) {
-    //   const { height } = child.getBoundingClientRect()
-    //   if (scrollTop < accumHeight) continue
-    //   accumHeight += height
-    //   lastRatio = Math.min(1, (scrollTop - accumHeight) / height)
-    //   index++
-    // }
 
     // calculate section index
     let accumHeight = 0
@@ -107,6 +96,14 @@ export const ScrollProvider: React.FC<React.PropsWithChildren<Props>> = ({
     }
 
     const sectionIndex = currentIndex + lastRatio
+
+    console.log('DEBUG: current scroll value', {
+      scrollTop,
+      parentSize: statRef.current.parentSize,
+      totalContentSize: statRef.current.totalContentSize,
+      sectionIndex,
+    })
+
     return {
       scrollTop,
       parentSize: statRef.current.parentSize,
