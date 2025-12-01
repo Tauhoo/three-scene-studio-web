@@ -112,15 +112,16 @@ const StepContainer = styled.div`
 `
 
 const StepNumber = styled.div`
-  color: white;
+  color: #000000;
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 25px;
-  height: 25px;
+  width: 22px;
+  height: 22px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #ffffff;
 `
 
 const StepContent = styled.div`
@@ -299,11 +300,11 @@ const HowToUse = () => {
             </HorizontalTitleContainer>
             <PanelContainer>
               <StepContainer>
-                <StepNumber>1</StepNumber>
                 <StepContent>
                   <StepImageContainer>
                     <StepImage src={setupSceneBanner} />
                   </StepImageContainer>
+                  <StepNumber>1</StepNumber>
                   <StepDescription>
                     Set up scene in Blender and export GLTF file.
                   </StepDescription>
@@ -311,33 +312,33 @@ const HowToUse = () => {
               </StepContainer>
               <Banner />
               <StepContainer>
-                <StepNumber>2</StepNumber>
                 <StepContent>
                   <StepImageContainer>
                     <StepImage src={uploadFileToCloudBanner} />
                   </StepImageContainer>
+                  <StepNumber>2</StepNumber>
                   <StepDescription>
                     Upload final TSS result file to public internet.
                   </StepDescription>
                 </StepContent>
               </StepContainer>
               <StepContainer>
-                <StepNumber>3</StepNumber>
                 <StepContent>
                   <StepImageContainer>
                     <StepImage src={tssEditBanner} />
                   </StepImageContainer>
+                  <StepNumber>3</StepNumber>
                   <StepDescription>
                     Adjust and export scene in Three Scene Studio editor.
                   </StepDescription>
                 </StepContent>
               </StepContainer>
               <StepContainer>
-                <StepNumber>4</StepNumber>
                 <StepContent>
                   <StepImageContainer>
                     <StepImage src={importSceneBanner} />
                   </StepImageContainer>
+                  <StepNumber>4</StepNumber>
                   <StepDescription>
                     Import the scene to your website with SDK.
                   </StepDescription>
