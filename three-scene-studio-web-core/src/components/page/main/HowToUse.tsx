@@ -314,22 +314,22 @@ const HowToUse = () => {
               <StepContainer>
                 <StepContent>
                   <StepImageContainer>
-                    <StepImage src={uploadFileToCloudBanner} />
+                    <StepImage src={tssEditBanner} />
                   </StepImageContainer>
                   <StepNumber>2</StepNumber>
                   <StepDescription>
-                    Upload final TSS result file to public internet.
+                    Adjust and export scene in Three Scene Studio editor.
                   </StepDescription>
                 </StepContent>
               </StepContainer>
               <StepContainer>
                 <StepContent>
                   <StepImageContainer>
-                    <StepImage src={tssEditBanner} />
+                    <StepImage src={uploadFileToCloudBanner} />
                   </StepImageContainer>
                   <StepNumber>3</StepNumber>
                   <StepDescription>
-                    Adjust and export scene in Three Scene Studio editor.
+                    Upload final TSS result file to public internet.
                   </StepDescription>
                 </StepContent>
               </StepContainer>
