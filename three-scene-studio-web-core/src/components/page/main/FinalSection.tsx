@@ -51,8 +51,8 @@ const ButtonSizer = styled.div`
   }
 
   @media (max-width: 500px) {
-    width: calc(50vw - 20px);
-    height: calc(25vw - 10px);
+    width: calc(50dvw - 20px);
+    height: calc(25dvw - 10px);
   }
 `
 
@@ -80,10 +80,10 @@ const MockCharacterImage = styled.div`
 `
 
 const StyleTitle = styled(Title)`
-  grid-template-columns: 1fr max-content calc(50vw + 100px);
+  grid-template-columns: 1fr max-content calc(50dvw + 100px);
 
   @media (max-width: 900px) {
-    grid-template-columns: 1fr max-content calc(50vw);
+    grid-template-columns: 1fr max-content calc(50dvw);
   }
 
   @media (max-width: 700px) {

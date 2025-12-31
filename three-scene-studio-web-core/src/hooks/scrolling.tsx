@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useRef, useState } from 'react'
 import styled from 'styled-components'
 const Container = styled.div`
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   overflow-y: hidden;
   position: relative;

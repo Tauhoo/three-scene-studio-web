@@ -67,7 +67,7 @@ const VerticalTitleRotator = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(90deg);
-  width: 100vh;
+  width: 100dvh;
 `
 
 const HorizontalTitleContainer = styled.div`
@@ -79,7 +79,7 @@ const HorizontalTitleContainer = styled.div`
 
   @media (max-width: 500px) {
     min-height: 150px;
-    height: 25vh;
+    height: 25dvh;
     width: 100%;
   }
 `
@@ -196,11 +196,11 @@ const HollowBackground = styled.div`
   }
 
   & > .mask-bottom {
-    height: calc((100vh - (100px + 20px) - 20px - 20px) / 2 + 20px + 20px);
+    height: calc((100dvh - (100px + 20px) - 20px - 20px) / 2 + 20px + 20px);
   }
 
   & > .mask-left {
-    width: calc((100vw - 20px - (20px + 70px + 35px) + 20px) / 3 + 20px);
+    width: calc((100dvw - 20px - (20px + 70px + 35px) + 20px) / 3 + 20px);
   }
 
   & > .mask-right {
@@ -209,14 +209,14 @@ const HollowBackground = styled.div`
 
   & > .background-image {
     height: calc(
-      100vh - ${100 + 20}px -
-        ((100vh - (100px + 20px) - 20px - 20px) / 2 + 20px + 20px)
+      100dvh - ${100 + 20}px -
+        ((100dvh - (100px + 20px) - 20px - 20px) / 2 + 20px + 20px)
     );
     width: calc(
-      100vw - ((100vw - 20px - (20px + 70px + 35px) + 20px) / 3 + 20px) -
+      100dvw - ((100dvw - 20px - (20px + 70px + 35px) + 20px) / 3 + 20px) -
         ${35 + 70 + 20}px
     );
-    left: calc((100vw - 20px - (20px + 70px + 35px) + 20px) / 3 + 20px);
+    left: calc((100dvw - 20px - (20px + 70px + 35px) + 20px) / 3 + 20px);
     top: ${100 + 20}px;
   }
 
@@ -226,12 +226,12 @@ const HollowBackground = styled.div`
     }
 
     & > .mask-bottom {
-      height: calc((100vh - (100px + 20px) - 20px) / 2 + 20px + 20px);
+      height: calc((100dvh - (100px + 20px) - 20px) / 2 + 20px + 20px);
     }
 
     & > .background-image {
       height: calc(
-        100vh - ${100}px - ((100vh - (100px + 20px) - 20px) / 2 + 20px + 20px)
+        100dvh - ${100}px - ((100dvh - (100px + 20px) - 20px) / 2 + 20px + 20px)
       );
       top: ${100}px;
     }
@@ -239,11 +239,11 @@ const HollowBackground = styled.div`
 
   @media (max-width: 700px) {
     & > .mask-bottom {
-      height: calc((100vh - (100px + 20px) - 20px) / 2 + 20px + 28px);
+      height: calc((100dvh - (100px + 20px) - 20px) / 2 + 20px + 28px);
     }
 
     & > .mask-left {
-      width: calc((100vw - 10px - 10px + 10px) / 3 + 10px);
+      width: calc((100dvw - 10px - 10px + 10px) / 3 + 10px);
     }
 
     & > .mask-right {
@@ -251,8 +251,8 @@ const HollowBackground = styled.div`
     }
 
     & > .background-image {
-      width: calc(100vw - ((100vw - 10px - 10px + 10px) / 3 + 10px) - 10px);
-      left: calc((100vw - 10px - 10px + 10px) / 3 + 10px);
+      width: calc(100dvw - ((100dvw - 10px - 10px + 10px) / 3 + 10px) - 10px);
+      left: calc((100dvw - 10px - 10px + 10px) / 3 + 10px);
     }
   }
 `

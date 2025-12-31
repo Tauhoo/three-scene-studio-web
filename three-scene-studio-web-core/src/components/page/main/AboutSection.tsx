@@ -22,15 +22,15 @@ const Container = styled.div`
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
-    grid-template-rows: 45vh 1fr;
+    grid-template-rows: 45dvh 1fr;
   }
 
   @media (max-width: 600px) {
-    grid-template-rows: 40vh 1fr;
+    grid-template-rows: 40dvh 1fr;
   }
 
   @media (max-width: 400px) {
-    grid-template-rows: 35vh 1fr;
+    grid-template-rows: 35dvh 1fr;
   }
 `
 
