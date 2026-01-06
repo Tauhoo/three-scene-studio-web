@@ -113,9 +113,6 @@ const StepContainer = styled.div`
 
 const StepNumber = styled.div`
   color: #000000;
-  position: absolute;
-  top: 10px;
-  left: 10px;
   width: 22px;
   height: 22px;
   display: flex;
@@ -129,16 +126,22 @@ const StepContent = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 120px;
+  grid-template-rows: max-content 1fr;
+  gap: 10px;
 
   @media (max-width: 500px) {
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: max-content 1fr;
     grid-template-rows: 1fr;
   }
 `
 
+const StepFooter = styled.div`
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 10px;
+`
+
 const StepDescription = styled.div`
-  padding: 10px;
   color: white;
 `
 
@@ -257,23 +260,19 @@ const HollowBackground = styled.div`
   }
 `
 
-const StepImageContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  border-width: 1px;
-  border-style: solid;
-  border-color: white;
-  overflow: hidden;
-  position: relative;
-`
-
 const StepImage = styled.img`
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  object-fit: cover;
-  height: 100%;
+  object-fit: contain;
   width: 100%;
+  aspect-ratio: 829/500;
+  @media (max-width: 500px) {
+    width: auto;
+    height: 100px;
+  }
+
+  @media (max-width: 360px) {
+    width: auto;
+    height: 60px;
+  }
 `
 
 const HowToUse = () => {
@@ -301,47 +300,47 @@ const HowToUse = () => {
             <PanelContainer>
               <StepContainer>
                 <StepContent>
-                  <StepImageContainer>
-                    <StepImage src={setupSceneBanner} />
-                  </StepImageContainer>
-                  <StepNumber>1</StepNumber>
-                  <StepDescription>
-                    Set up scene in Blender and export GLTF file.
-                  </StepDescription>
+                  <StepImage src={setupSceneBanner} />
+                  <StepFooter>
+                    <StepNumber>1</StepNumber>
+                    <StepDescription>
+                      Set up scene in Blender and export GLTF file.
+                    </StepDescription>
+                  </StepFooter>
                 </StepContent>
               </StepContainer>
               <Banner />
               <StepContainer>
                 <StepContent>
-                  <StepImageContainer>
-                    <StepImage src={tssEditBanner} />
-                  </StepImageContainer>
-                  <StepNumber>2</StepNumber>
-                  <StepDescription>
-                    Adjust and export scene in Three Scene Studio editor.
-                  </StepDescription>
+                  <StepImage src={tssEditBanner} />
+                  <StepFooter>
+                    <StepNumber>2</StepNumber>
+                    <StepDescription>
+                      Adjust and export scene in Three Scene Studio editor.
+                    </StepDescription>
+                  </StepFooter>
                 </StepContent>
               </StepContainer>
               <StepContainer>
                 <StepContent>
-                  <StepImageContainer>
-                    <StepImage src={uploadFileToCloudBanner} />
-                  </StepImageContainer>
-                  <StepNumber>3</StepNumber>
-                  <StepDescription>
-                    Upload final TSS result file to public internet.
-                  </StepDescription>
+                  <StepImage src={uploadFileToCloudBanner} />
+                  <StepFooter>
+                    <StepNumber>3</StepNumber>
+                    <StepDescription>
+                      Upload final TSS result file to public internet.
+                    </StepDescription>
+                  </StepFooter>
                 </StepContent>
               </StepContainer>
               <StepContainer>
                 <StepContent>
-                  <StepImageContainer>
-                    <StepImage src={importSceneBanner} />
-                  </StepImageContainer>
-                  <StepNumber>4</StepNumber>
-                  <StepDescription>
-                    Import the scene to your website with SDK.
-                  </StepDescription>
+                  <StepImage src={importSceneBanner} />
+                  <StepFooter>
+                    <StepNumber>4</StepNumber>
+                    <StepDescription>
+                      Import the scene to your website with SDK.
+                    </StepDescription>
+                  </StepFooter>
                 </StepContent>
               </StepContainer>
             </PanelContainer>
