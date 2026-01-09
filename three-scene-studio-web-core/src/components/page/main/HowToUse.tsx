@@ -94,6 +94,7 @@ const HorizontalTitleContainer = styled.div`
     min-height: 150px;
     height: 25dvh;
     width: 100%;
+    background: linear-gradient(to bottom, transparent, black);
   }
 `
 
