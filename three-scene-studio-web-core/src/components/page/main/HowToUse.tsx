@@ -319,6 +319,7 @@ const StepImageContainer = styled.div`
 const PointScrollIndicatorContainer = styled.div`
   display: none;
   @media (max-width: 500px) {
+    padding: 5px 0px;
     display: block;
   }
 `
@@ -346,6 +347,23 @@ const HowToUse = () => {
     return () => {
       ref.current?.removeEventListener('scroll', onScroll)
     }
+  }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!ref.current) return
+      const maxScroll = ref.current.scrollWidth - ref.current.clientWidth
+      if (maxScroll <= 0) return
+      const currentScroll = ref.current.scrollLeft
+      console.log(currentScroll, maxScroll)
+
+      if (currentScroll < 10 || currentScroll > maxScroll - 10) {
+        const targetScroll = currentScroll < maxScroll / 2 ? maxScroll : 0
+        ref.current.scrollTo({ left: targetScroll, behavior: 'smooth' })
+      }
+    }, 5000)
+
+    return () => clearInterval(interval)
   }, [])
 
   return (
