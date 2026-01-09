@@ -8,6 +8,8 @@ import tssEditBanner from '/images/how-to-banners/tss-edit-banner.webp'
 import uploadFileToCloudBanner from '/images/how-to-banners/upload-file-to-cloud-banner.webp'
 import howToUseBackgroundImage from '/images/section-backgrounds/how-to-banner-background.webp'
 import { zIndex } from '../../../constants/layout'
+import PointScrollIndicator from '../../commons/PointScrollIndicator'
+import { useEffect, useRef, useState } from 'react'
 
 const Container = styled.div`
   height: 100%;
@@ -18,10 +20,6 @@ const Container = styled.div`
     grid-template-columns: 1fr;
     padding-right: 0px;
     padding-bottom: 35px;
-  }
-
-  @media (max-width: 500px) {
-    /* background-color: black; */
   }
 `
 
@@ -39,18 +37,33 @@ const PanelContainer = styled.div`
   padding: 20px;
   gap: 20px;
   display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
   @media (max-width: 700px) {
     padding: 10px;
     gap: 10px;
   }
 
   @media (max-width: 500px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr repeat(3, 1fr);
-  }
+    overflow-x: auto;
+    grid-template-columns: repeat(2, 100%);
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: column;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline-start: 10px;
+    /* Firefox */
+    scrollbar-width: none;
 
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+    /* IE / old Edge */
+    -ms-overflow-style: none;
+
+    /* Chrome / Safari / new Edge */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `
 
 const VerticalTitleContainer = styled.div`
@@ -109,6 +122,9 @@ const AvoidPaddingLogoPadding = styled(LogoPadding)`
 
 const StepContainer = styled.div`
   position: relative;
+  @media (max-width: 500px) {
+    scroll-snap-align: start;
+  }
 `
 
 const StepNumber = styled.div`
@@ -130,8 +146,8 @@ const StepContent = styled.div`
   gap: 10px;
 
   @media (max-width: 500px) {
-    grid-template-columns: max-content 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr max-content;
   }
 `
 
@@ -274,13 +290,11 @@ const StepImage = styled.img`
   width: 100%;
   aspect-ratio: 829/500;
   @media (max-width: 500px) {
-    width: auto;
-    height: 100px;
-  }
-
-  @media (max-width: 360px) {
-    width: auto;
-    height: 60px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
   }
 `
 
@@ -298,7 +312,42 @@ const MaskBackground = styled.div`
   }
 `
 
+const StepImageContainer = styled.div`
+  position: relative;
+`
+
+const PointScrollIndicatorContainer = styled.div`
+  display: none;
+  @media (max-width: 500px) {
+    display: block;
+  }
+`
+
 const HowToUse = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [page, setPage] = useState(0)
+
+  const onScroll = (e: Event) => {
+    const target = e.target as HTMLDivElement
+    const scrollLeft = target.scrollLeft
+    const scrollWidth = target.scrollWidth
+    const clientWidth = target.clientWidth
+    const maxScroll = scrollWidth - clientWidth
+
+    if (maxScroll <= 0) return
+
+    const scrollRatio = scrollLeft / maxScroll
+
+    const newPage = scrollRatio >= 0.5 ? 1 : 0
+    setPage(newPage)
+  }
+  useEffect(() => {
+    ref.current?.addEventListener('scroll', onScroll)
+    return () => {
+      ref.current?.removeEventListener('scroll', onScroll)
+    }
+  }, [])
+
   return (
     <PageSizeContainer style={{ position: 'relative' }}>
       <HollowBackground>
@@ -321,10 +370,12 @@ const HowToUse = () => {
                 <Title>HOW TO USE IT</Title>
               </TitlePositioner>
             </HorizontalTitleContainer>
-            <PanelContainer>
+            <PanelContainer ref={ref}>
               <StepContainer>
                 <StepContent>
-                  <StepImage src={setupSceneBanner} />
+                  <StepImageContainer>
+                    <StepImage src={setupSceneBanner} />
+                  </StepImageContainer>
                   <StepFooter>
                     <StepNumber>1</StepNumber>
                     <StepDescription>
@@ -336,7 +387,9 @@ const HowToUse = () => {
               <Banner />
               <StepContainer>
                 <StepContent>
-                  <StepImage src={tssEditBanner} />
+                  <StepImageContainer>
+                    <StepImage src={tssEditBanner} />
+                  </StepImageContainer>
                   <StepFooter>
                     <StepNumber>2</StepNumber>
                     <StepDescription>
@@ -347,7 +400,9 @@ const HowToUse = () => {
               </StepContainer>
               <StepContainer>
                 <StepContent>
-                  <StepImage src={uploadFileToCloudBanner} />
+                  <StepImageContainer>
+                    <StepImage src={uploadFileToCloudBanner} />
+                  </StepImageContainer>
                   <StepFooter>
                     <StepNumber>3</StepNumber>
                     <StepDescription>
@@ -358,7 +413,9 @@ const HowToUse = () => {
               </StepContainer>
               <StepContainer>
                 <StepContent>
-                  <StepImage src={importSceneBanner} />
+                  <StepImageContainer>
+                    <StepImage src={importSceneBanner} />
+                  </StepImageContainer>
                   <StepFooter>
                     <StepNumber>4</StepNumber>
                     <StepDescription>
@@ -368,6 +425,9 @@ const HowToUse = () => {
                 </StepContent>
               </StepContainer>
             </PanelContainer>
+            <PointScrollIndicatorContainer>
+              <PointScrollIndicator steps={2} currentStep={page} />
+            </PointScrollIndicatorContainer>
           </InnerContainer>
         </AvoidPaddingLogoPadding>
         <VerticalTitleContainer>
