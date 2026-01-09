@@ -21,7 +21,7 @@ const Container = styled.div`
   }
 
   @media (max-width: 500px) {
-    background-color: black;
+    /* background-color: black; */
   }
 `
 
@@ -177,8 +177,8 @@ const HollowBackground = styled.div`
   }
   & > .mask-left {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0px;
+    left: 0px;
     height: 100%;
     background: black;
   }
@@ -188,10 +188,6 @@ const HollowBackground = styled.div`
     right: 0;
     height: 100%;
     background: black;
-  }
-
-  @media (max-width: 500px) {
-    display: none;
   }
 
   & > .mask-top {
@@ -258,6 +254,19 @@ const HollowBackground = styled.div`
       left: calc((100dvw - 10px - 10px + 10px) / 3 + 10px);
     }
   }
+
+  @media (max-width: 500px) {
+    & > .mask {
+      display: none;
+    }
+    & > .background-image {
+      top: 0px;
+      left: 0px;
+      height: 25;
+      min-height: 150px;
+      width: 100%;
+    }
+  }
 `
 
 const StepImage = styled.img`
@@ -275,20 +284,35 @@ const StepImage = styled.img`
   }
 `
 
+const MaskBackground = styled.div`
+  width: 100%;
+  height: 75dvh;
+  max-height: calc(100dvh - 150px);
+  background-color: black;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  display: none;
+  @media (max-width: 500px) {
+    display: block;
+  }
+`
+
 const HowToUse = () => {
   return (
     <PageSizeContainer style={{ position: 'relative' }}>
       <HollowBackground>
-        <div className='mask-top'></div>
-        <div className='mask-bottom'></div>
-        <div className='mask-left'></div>
-        <div className='mask-right'></div>
+        <div className='mask-top mask'></div>
+        <div className='mask-bottom mask'></div>
+        <div className='mask-left mask'></div>
+        <div className='mask-right mask'></div>
         <img
           className='background-image'
           src={howToUseBackgroundImage}
           style={{ position: 'absolute', objectFit: 'cover' }}
         />
       </HollowBackground>
+      <MaskBackground></MaskBackground>
       <Container>
         <AvoidPaddingLogoPadding>
           <InnerContainer>

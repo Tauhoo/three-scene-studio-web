@@ -20,7 +20,8 @@ const Container = styled.div`
 type TargetPositionAndScale = {
   x: (rect: DOMRect) => number
   y: (rect: DOMRect) => number
-  scale: number
+  scaleX: number
+  scaleY: number
 }
 
 const sectionOneTargetPositionAndScale = (): TargetPositionAndScale => {
@@ -28,7 +29,8 @@ const sectionOneTargetPositionAndScale = (): TargetPositionAndScale => {
     return {
       x: () => (window.innerWidth - 400) / 2 + 400,
       y: () => window.innerHeight / 2,
-      scale: 1,
+      scaleX: 1,
+      scaleY: 1,
     }
   }
 
@@ -36,14 +38,16 @@ const sectionOneTargetPositionAndScale = (): TargetPositionAndScale => {
     return {
       x: () => (window.innerWidth - 300) / 2 + 300,
       y: () => window.innerHeight / 2,
-      scale: 1,
+      scaleX: 1,
+      scaleY: 1,
     }
   }
 
   return {
     x: () => window.innerWidth / 2,
     y: () => window.innerHeight / 2,
-    scale: 1,
+    scaleX: 1,
+    scaleY: 1,
   }
 }
 
@@ -52,7 +56,8 @@ const sectionTwoTargetPositionAndScale = (): TargetPositionAndScale => {
     return {
       x: () => 500 / 2 + 30,
       y: () => window.innerHeight / 2 - 60,
-      scale: 0.7,
+      scaleX: 0.7,
+      scaleY: 0.7,
     }
   }
 
@@ -60,7 +65,8 @@ const sectionTwoTargetPositionAndScale = (): TargetPositionAndScale => {
     return {
       x: () => 500 / 2,
       y: () => window.innerHeight / 2 - 60,
-      scale: 0.6,
+      scaleX: 0.6,
+      scaleY: 0.6,
     }
   }
 
@@ -68,14 +74,16 @@ const sectionTwoTargetPositionAndScale = (): TargetPositionAndScale => {
     return {
       x: () => window.innerWidth / 2,
       y: () => (window.innerHeight * 0.3) / 2,
-      scale: 0.5,
+      scaleX: 0.5,
+      scaleY: 0.5,
     }
   }
 
   return {
     x: () => window.innerWidth / 2,
     y: () => (window.innerHeight * 0.3) / 2,
-    scale: 0.5,
+    scaleX: 0.5,
+    scaleY: 0.5,
   }
 }
 
@@ -86,7 +94,8 @@ const sectionThreeTargetPositionAndScale = (
     return {
       x: () => ((window.innerWidth - 70 - 20) / 3) * 2,
       y: () => (window.innerHeight - 140) / 2 - 20 / 2 + 140 - rect.height / 2,
-      scale: 0.5,
+      scaleX: 0.5,
+      scaleY: 0.5,
     }
   }
 
@@ -94,7 +103,8 @@ const sectionThreeTargetPositionAndScale = (
     return {
       x: () => ((window.innerWidth - 70 - 20) / 3) * 2,
       y: () => (window.innerHeight - 101) / 2 - 20 / 2 + 101 - rect.height / 2,
-      scale: 0.5,
+      scaleX: 0.5,
+      scaleY: 0.5,
     }
   }
   if (window.innerWidth > 500) {
@@ -102,14 +112,16 @@ const sectionThreeTargetPositionAndScale = (
       x: () => (window.innerWidth / 3) * 2,
       y: () =>
         (window.innerHeight - 89 - 35) / 2 - 10 / 2 + 89 - rect.height / 2,
-      scale: 0.5,
+      scaleX: 0.5,
+      scaleY: 0.5,
     }
   }
 
   return {
     x: () => window.innerWidth / 2,
-    y: () => window.innerHeight - rect.height / 2,
-    scale: 1,
+    y: () => rect.height / 2,
+    scaleX: 1,
+    scaleY: 0.25,
   }
 }
 
@@ -117,7 +129,8 @@ const sectionFourTargetPositionAndScale = (): TargetPositionAndScale => {
   return {
     x: () => window.innerWidth / 2,
     y: () => window.innerHeight / 2,
-    scale: 1,
+    scaleX: 1,
+    scaleY: 1,
   }
 }
 
@@ -157,20 +170,25 @@ const Background3DScene = () => {
         (nextTargetPositionAndScale.y(rect) -
           currentTargetPositionAndScale.y(rect)) *
           fraction,
-      scale:
-        currentTargetPositionAndScale.scale +
-        (nextTargetPositionAndScale.scale -
-          currentTargetPositionAndScale.scale) *
+      scaleX:
+        currentTargetPositionAndScale.scaleX +
+        (nextTargetPositionAndScale.scaleX -
+          currentTargetPositionAndScale.scaleX) *
+          fraction,
+      scaleY:
+        currentTargetPositionAndScale.scaleY +
+        (nextTargetPositionAndScale.scaleY -
+          currentTargetPositionAndScale.scaleY) *
           fraction,
     }
 
     ref.current.style.top = `${currentPositionAndScale.y}px`
     ref.current.style.left = `${currentPositionAndScale.x}px`
     ref.current.style.width = `${
-      currentPositionAndScale.scale * window.innerWidth
+      currentPositionAndScale.scaleX * window.innerWidth
     }px`
     ref.current.style.height = `${
-      currentPositionAndScale.scale * window.innerHeight
+      currentPositionAndScale.scaleY * window.innerHeight
     }px`
     ref.current.style.transform = `translate(-50%, -50%)`
   }
